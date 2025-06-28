@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Klas Perakende Satış</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+  <!-- Flatpickr CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+  />
+  <!-- SweetAlert CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* CSS bloğu */
+    .logo:hover { transform: scale(1.1); transition: transform 0.3s ease; }
+    .modern-title { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: #333; transition: color 0.3s ease, transform 0.3s ease; animation: fadeIn 1.2s ease-in-out; }
+    .modern-title:hover { color: #0d6efd; transform: scale(1.05); }
+    .form-check-label.active { background-color: #0d6efd; color: white; padding: 0.2rem 0.5rem; border-radius: 0.25rem; }
+    .toggle-option { cursor: pointer; padding: 0.5rem 1rem; border: 1px solid #0d6efd; border-radius: 0.25rem; margin-right: 0.5rem; transition: background-color 0.3s ease, color 0.3s ease; font-weight: bold; border: none; }
+    .toggle-option.active { background-color: #0d6efd; color: white; }
+    body { font-family: 'Montserrat', sans-serif;  background-size: 150px 150px; animation: fadeIn 1s ease-in-out; }
+    header { background: linear-gradient(to right, #a1c4fd, #c2e9fb); box-shadow: 0 4px 6px rgba(0,0,0,0.1); animation: slideDown 0.8s ease-in-out; }
+    .card { border: none; border-radius: 15px; overflow: visible; transition: box-shadow 0.3s ease; background: #fff; }
+    .card:hover { box-shadow: 0 6px 10px rgba(0,0,0,0.1); }
+    .form-control, .form-select { border-radius: 10px; transition: box-shadow 0.3s ease, transform 0.3s ease; }
+    .form-control:focus, .form-select:focus { box-shadow: 0 0 8px rgba(161,196,253,0.5); transform: scale(1.02); }
+    footer { background: linear-gradient(to right, #a1c4fd, #c2e9fb); animation: fadeIn 1.5s ease-in-out; position: fixed; bottom: 0; width: 100%; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  </style>
+</head>
+<body class="bg-light">
+  <!-- Üst Bilgi -->
+  <header class="bg-white shadow-sm py-3">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <img src="img/klaslogo.png" alt="Logo" class="me-3 logo" style="height:80px;" />
+      </div>
+      <h3 class="modern-title fw-bold mb-0">Klas Perakende Satış</h3>
+      <div class="d-flex flex-column" style="max-width:400px;">
+        <div class="input-group mb-2">
+          <span class="input-group-text bg-primary text-white border-0" style="width:150px;">Sipariş No</span>
+          <input type="text" id="orderCodeHeader" class="form-control" placeholder="NRP202500001" readonly style="width:250px;" />
+        </div>
+        <div class="input-group">
+          <span class="input-group-text bg-primary text-white border-0" style="width:150px;">Plasiyer</span>
+          <input type="text" id="plasiyerInput" class="form-control" placeholder="Plasiyer giriniz" readonly style="width:250px;" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Gövde -->
+  <main class="container my-5">
+    <!-- Sipariş Üst Bilgisi -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-light d-flex justify-content-between align-items-center">
+        <span>Sipariş Üst Bilgisi</span>
+        <button class="btn btn-sm btn-primary" id="toggleOrderInfo"><i class="bi bi-dash-lg" id="toggleOrderInfoIcon"></i></button>
+      </div>
+      <div class="card-body" id="orderInfoBody">
+        <div class="row gx-5 gy-4">
+          <div class="col-md-6">
+            <label for="customerSelection" class="form-label">Müşteri Seçimi</label>
+            <div class="input-group">
+              <input type="text" id="customerSelection" class="form-control" placeholder="Müşteri adı veya kodu..." autocomplete="off" />
+              <button class="btn btn-outline-secondary" onclick="openNewCustomerModal()"><i class="bi bi-plus-lg"></i></button>
+            </div>
+            <ul class="dropdown-menu w-100" id="customerDropdown" style="max-height:200px;overflow-y:auto;"></ul>
+          </div>
+          <div class="col-md-6">
+            <label for="vehicleSelection" class="form-label">Araç Seçimi</label>
+            <div class="input-group">
+              <input type="text" id="vehicleSelection" class="form-control" placeholder="Plaka veya şasi numarası..." autocomplete="off" />
+              <button class="btn btn-outline-secondary" onclick="openNewVehicleModal()"><i class="bi bi-plus-lg"></i></button>
+            </div>
+            <ul class="dropdown-menu w-100" id="vehicleDropdown" style="max-height:200px;overflow-y:auto;"></ul>
+          </div>
+        </div>
+        <div class="row gx-4 gy-4 mt-3">
+          <div class="col-md-2">
+            <label for="siparisTarihi" class="form-label">Sipariş Tarihi</label>
+            <input type="text" id="siparisTarihi" class="form-control" readonly />
+          </div>
+          <div class="col-md-2">
+            <label for="teslimTarihi" class="form-label">Teslim Tarihi</label>
+            <input type="text" id="teslimTarihi" class="form-control" readonly />
+          </div>
+          <div class="col-md-3">
+            <label for="aciklama1" class="form-label">Açıklama 1</label>
+            <input type="text" id="aciklama1" class="form-control" placeholder="Açıklama giriniz" />
+          </div>
+          <div class="col-md-3">
+            <label for="aciklama2" class="form-label">Açıklama 2</label>
+            <input type="text" id="aciklama2" class="form-control" placeholder="Açıklama giriniz" />
+          </div>
+          <div class="col-md-2">
+            <label for="iskontoOrani" class="form-label">İskonto (%)</label>
+            <input type="number" id="iskontoOrani" class="form-control" min="0" max="100" step="0.01" value="0" />
+            <input type="hidden" id="masId" />
+          </div>
+        </div>
+        <div class="mt-4">
+          <button class="btn btn-success" onclick="kaydetMas()">Sipariş Üst Bilgiyi Kaydet</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ürün Seçimi Kartı -->
+    <div class="card shadow-sm mb-4" id="productSelectionCard">
+      <div class="card-header bg-light d-flex justify-content-between align-items-center">
+        <span>Ürün Seçimi Bilgileri</span>
+        <button class="btn btn-success d-none" id="proformaButton" onclick="generateProforma()">Proforma Oluştur</button>
+      </div>
+      <div class="card-body">
+        <div class="row gx-4 gy-4">
+          <div class="col-md-9">
+            <label for="productSelection" class="form-label">Ürün Seçimi</label>
+            <input type="text" id="productSelection" class="form-control" placeholder="Ürün adı veya kodu..." autocomplete="off" />
+            <ul class="dropdown-menu w-100" id="productDropdown" style="max-height:200px;overflow-y:auto;"></ul>
+          </div>
+          <div class="col-md-3">
+            <label for="productQuantity" class="form-label">Miktar</label>
+            <input type="number" id="productQuantity" class="form-control" min="1" />
+          </div>
+        </div>
+        <div class="row gx-4 gy-4">
+          <div class="col-md-3">
+            <label for="productPrice" class="form-label">Fiyat</label>
+            <input type="number" id="productPrice" class="form-control" step="0.01" min="0" />
+          </div>
+          <div class="col-md-3">
+            <label for="productDiscount" class="form-label">İskonto (%)</label>
+            <input type="number" id="productDiscount" class="form-control" step="0.01" min="0" max="100" value="0" />
+          </div>
+          <div class="col-md-3">
+            <label for="currencyType" class="form-label">Döviz Tipi</label>
+            <select id="currencyType" class="form-select">
+              <option value="TRY">TRY</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+          <div class="col-md-3 d-flex align-items-end">
+            <button class="btn btn-primary w-100" onclick="addProduct()">Ekle</button>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12">
+            <table class="table table-striped" id="productTable">
+              <thead class="table-primary">
+                <tr>
+                  <th>#</th><th>Kod</th><th>Ad</th><th>Fiyat</th><th>Döviz</th><th>Miktar</th><th>İskonto</th><th>İşlem</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary d-none" id="siparisiOlusturButton" onclick="createOrder()">Siparişi Oluştur</button>
+    </div>
+  </main>
+
+  <!-- Modal: Yeni Müşteri -->
+  <div class="modal fade" id="newCustomerModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Yeni Müşteri Ekle</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Cari İsim *</label><input type="text" id="newCustomerName" class="form-control" /></div>
+            <div class="col-md-6"><label class="form-label">Müşteri Kodu *</label><input type="text" id="newCustomerCode" class="form-control" /></div>
+            <div class="col-md-6"><label class="form-label">VKN/TC *</label><input type="text" id="vknTc" class="form-control" /></div>
+            <div class="col-md-6"><label class="form-label">Vergi Dairesi</label><input type="text" id="vergiDairesi" class="form-control" /></div>
+            <div class="col-12"><label class="form-label">Adres</label><textarea id="adres" class="form-control" rows="2"></textarea></div>
+            <div class="col-md-6"><label class="form-label">Telefon</label><input type="tel" id="telefon" class="form-control" /></div>
+            <div class="col-md-6"><label class="form-label">Ödeme Tipi</label><select id="odemeTipi" class="form-select"><option value="">Seçiniz...</option><option value="Nakit">Nakit</option><option value="Kredi Kartı">Kredi Kartı</option></select></div>
+            <div class="col-md-6"><label class="form-label">E-posta</label><input type="email" id="eposta" class="form-control" /></div>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">İptal</button><button class="btn btn-primary" onclick="saveNewCustomer()">Kaydet</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Yeni Araç -->
+  <div class="modal fade" id="newVehicleModal" tabindex="-1">
+    <div class="modal-dialog"><div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">Yeni Araç Ekle</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body"><div class="row g-3">
+        <div class="col-md-6"><label class="form-label">Plaka *</label><input type="text" id="newVehiclePlate" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Şasi No *</label><input type="text" id="newVehicleChassis" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Motor No *</label><input type="text" id="newVehicleEngine" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Marka *</label><input type="text" id="newVehicleBrand" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Model *</label><input type="text" id="newVehicleModel" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Model Yılı *</label><input type="number" id="newVehicleYear" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Yakıt Tipi *</label><select id="newVehicleFuelType" class="form-select"><option value="">Seçiniz...</option><option>Benzin</option><option>Dizel</option><option>Elektrik</option><option>Hibrit</option></select></div>
+        <div class="col-md-6"><label class="form-label">Motor Gücü (HP) *</label><input type="number" id="newVehiclePower" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Km *</label><input type="number" id="newVehicleKm" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Diş Derinlik *</label><input type="text" id="newVehicleTireDepth" class="form-control" /></div>
+        <div class="col-md-6"><label class="form-label">Akü Durumu</label><input type="text" id="newVehicleBatteryStatus" class="form-control" /></div>
+      </div></div>
+      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">İptal</button><button class="btn btn-primary" onclick="saveNewVehicle()">Kaydet</button></div>
+    </div></div>
+  </div>
+
+  <!-- JS Kütüphaneler Sonrası -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/tr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Uygulama Modülleri -->
+  <script type="module" src="main.js" defer></script>
+</body>
+</html>
