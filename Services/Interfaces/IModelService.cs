@@ -8,9 +8,9 @@ namespace Uzser.CoreServices.Services.Interfaces
         Task<int> CreateAsync(ModelDto line);
         Task<bool> UpdateAsync(int id, ModelDto dto);
 
-        Task<List<ModelDto>> GetByIdAsync(int id);
+        // Task<List<ModelDto>> GetByIdAsync(int id);
          
 
-          Task<MarkaDto> GetAllModels();
+          Task<List<ModelDto>> GetAllModels();
     }
 }

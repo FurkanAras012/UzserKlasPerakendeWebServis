@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Uzser.CoreServices.Data;
 
@@ -11,9 +12,11 @@ using Uzser.CoreServices.Data;
 namespace Uzser.CoreServices.Migrations
 {
     [DbContext(typeof(UzserDbContext))]
-    partial class UzserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250630130113_AddUserMappingViews")]
+    partial class AddUserMappingViews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,9 +61,8 @@ namespace Uzser.CoreServices.Migrations
 
             modelBuilder.Entity("Uzser.CoreServices.Models.Entities.FlowUser", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -355,8 +357,9 @@ namespace Uzser.CoreServices.Migrations
                     b.Property<string>("CreateUser")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("FlowUserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("FlowUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FlowUserName")
                         .IsRequired()

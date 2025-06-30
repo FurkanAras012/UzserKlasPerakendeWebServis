@@ -23,9 +23,9 @@ namespace Uzser.CoreServices.Services.Implementations
             Console.WriteLine($"🟡 Kaydet çağrıldı - id:");
 
             var entity = _mapper.Map<Model>(dto);
-            
 
-            _context.Marka.Add(entity);
+
+            _context.Model.Add(entity);
             await _context.SaveChangesAsync();
 
             return entity.Id;
@@ -39,7 +39,7 @@ namespace Uzser.CoreServices.Services.Implementations
             if (entity == null) return false;
 
             _mapper.Map(dto, entity);
-            
+
 
             await _context.SaveChangesAsync();
             return true;
@@ -49,6 +49,19 @@ namespace Uzser.CoreServices.Services.Implementations
         {
             var entity = await _context.Model.FirstOrDefaultAsync(x => x.Id == id);
             return entity == null ? null : _mapper.Map<ModelDto>(entity);
+        }
+        
+         public async Task<List<ModelDto>> GetAllModels()
+        {
+            var entity = await _context.Marka.ToListAsync();
+            if (entity == null || entity.Count == 0)
+            {
+                return new List<ModelDto>();
+            }
+            else
+            {
+                return _mapper.Map<List<ModelDto>>(entity);
+            }
         }
     }
 }

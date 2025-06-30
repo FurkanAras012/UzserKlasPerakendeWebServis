@@ -13,6 +13,8 @@ namespace Uzser.CoreServices.Models.DTO
         public byte? WFState { get; set; }
         public int FlowId { get; set; }
 
+        public int MasterId { get; set; }
+
         public string? OrderNumber { get; set; } = string.Empty;
 
         public string? SalesManCode { get; set; } = string.Empty;

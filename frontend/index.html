@@ -43,11 +43,60 @@
     .form-control, .form-select { border-radius: 10px; transition: box-shadow 0.3s ease, transform 0.3s ease; }
     .form-control:focus, .form-select:focus { box-shadow: 0 0 8px rgba(161,196,253,0.5); transform: scale(1.02); }
     footer { background: linear-gradient(to right, #a1c4fd, #c2e9fb); animation: fadeIn 1.5s ease-in-out; position: fixed; bottom: 0; width: 100%; }
+    
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loading-content {
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: bounceIn 0.6s ease;
+    }
+    
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   </style>
 </head>
 <body class="bg-light">
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-content">
+      <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+        <span class="visually-hidden">Yükleniyor...</span>
+      </div>
+      <h5 class="text-primary">Veriler Yükleniyor...</h5>
+      <p class="text-muted mb-0">Lütfen bekleyiniz</p>
+    </div>
+  </div>
+
   <!-- Üst Bilgi -->
   <header class="bg-white shadow-sm py-3">
     <div class="container d-flex flex-wrap align-items-center justify-content-between">

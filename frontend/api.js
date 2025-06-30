@@ -37,8 +37,26 @@ export async function fetchVehicles() {
   }
 }
 
+export async function fetchTigerUsers() {
+  try {
+    const res = await fetch(`${BASE}/usermapping/tigerusers`);
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    return Array.isArray(data) ? data : data.data || [];
+  } catch {
+    console.error('Tiger users getirilemedi');
+    return [];
+  }
+}
+
 export async function fetchSales(flowId) {
   const res = await fetch(`${BASE}/sales/${flowId}`);
+  if (!res.ok) throw res;
+  return res.json();
+}
+
+export async function fetchSalesByFlowId(flowId) {
+  const res = await fetch(`${BASE}/sales/flow/${flowId}`);
   if (!res.ok) throw res;
   return res.json();
 }
@@ -53,12 +71,7 @@ export async function saveMaster(master) {
     if (!res.ok) throw res;
 
     const result = await res.json();
-    // ► Gizli masId input'unu API'den gelen ID ile dolduralım
-    if (result.data?.id) {
-      const masInput = document.getElementById('masId');
-      if (masInput) masInput.value = result.data.id;
-    }
-
+    
     // ► Başarı mesajı
     showSuccess(master.id ? 'Üst bilgi güncellendi' : 'Üst bilgi kaydedildi');
     return result;
@@ -78,8 +91,10 @@ export async function saveLine(line) {
     });
     if (!res.ok) throw res;
     const wrapper = await res.json();
-    // Başarı toast
-    showSuccess('Ürün satırı kaydedildi');
+    
+    // Mesajı burada göstermek yerine frontend'e bırakıyoruz
+    // showSuccess('Ürün satırı kaydedildi');
+    
     // Direkt olarak içindeki data objesini döndür
     return wrapper.data;
   } catch (e) {
@@ -101,6 +116,43 @@ export async function deleteLine(id, userId) {
   } catch (e) {
     console.error(e);
     showError('Ürün satırı silinemedi.');
+    throw e;
+  }
+}
+
+export async function getUserMappingByFlowUserId(flowUserId) {
+  try {
+    const res = await fetch(`${BASE}/usermapping/byflowuser/${flowUserId}`);
+    if (!res.ok) {
+      if (res.status === 404) {
+        // Eşleştirme bulunamadı, null döndür
+        return null;
+      }
+      throw res;
+    }
+    const data = await res.json();
+    return data.data || null; // ResponseWrapper'dan data'yı çıkar
+  } catch (e) {
+    console.error('Kullanıcı eşleştirmesi getirilemedi:', e);
+    return null;
+  }
+}
+
+export async function generateOrderNumber(seriesCode = 'SIP', userId = null) {
+  try {
+    const res = await fetch(`${BASE}/orderseries/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        seriesCode: seriesCode,
+        userId: userId
+      })
+    });
+    if (!res.ok) throw res;
+    return await res.json();
+  } catch (e) {
+    console.error('Sipariş numarası oluşturulamadı:', e);
+    showError('Sipariş numarası oluşturulamadı.');
     throw e;
   }
 }

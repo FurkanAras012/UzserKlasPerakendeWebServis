@@ -9,9 +9,9 @@ public class MappingProfile : Profile
         CreateMap<SalesHeader, SalesHeaderDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());
 
 
-        CreateMap<SalesLine, SalesLineDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore())
+        CreateMap<SalesLine, SalesLineDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());
 
-                                                          .ForMember(dest => dest.MasterId, opt => opt.Ignore());
+                                                         
 
         CreateMap<Stock, LookupItemDto>().ForMember(dest => dest.Code, opt => opt.MapFrom(src => src.STOCK_CODE))
                                           .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.STOCK_NAME));
@@ -24,7 +24,11 @@ public class MappingProfile : Profile
         CreateMap<Vehicles, VehiclesDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());
         CreateMap<UzserCustomer, UzserCustomerDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());
         CreateMap<Marka, MarkaDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());   
-        CreateMap<Model, ModelDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());                             
+        CreateMap<Model, ModelDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());
+        CreateMap<OrderSeries, OrderSeriesDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());
+        
+        // User Mapping
+        CreateMap<UserMapping, UserMappingDto>().ReverseMap().ForMember(dest => dest.Id, opt => opt.Ignore());
                                           
     }
 }

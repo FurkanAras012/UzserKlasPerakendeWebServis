@@ -3,6 +3,7 @@ using Uzser.CoreServices.Data;
 using Uzser.CoreServices.Services.Interfaces;
 using Uzser.CoreServices.Services.Implementations;
 using Uzser.CoreServices.Utils;
+using Uzser.CoreServices.Models.Entities;
 
 
 
@@ -27,6 +28,10 @@ builder.Services.AddScoped<IUzserCustomerService, UzserCustomerService>();
 builder.Services.AddScoped<ILookupService, LookupService>();
 builder.Services.AddScoped<IUtilityService, UtilityService>();
 builder.Services.AddScoped<IFormDocumentService, FormDocumentService>();
+builder.Services.AddScoped<IMarkaService, MarkaService>();
+builder.Services.AddScoped<IModelService, ModelService>();
+builder.Services.AddScoped<IOrderSeriesService, OrderSeriesService>();
+builder.Services.AddScoped<IUserMappingService, UserMappingService>();
 builder.Services.AddMemoryCache();
 builder.Services.AddCors(options =>
 {

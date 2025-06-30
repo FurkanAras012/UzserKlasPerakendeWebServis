@@ -7,7 +7,7 @@ namespace Uzser.CoreServices.Services.Interfaces
     {
         Task<int> CreateAsync(MarkaDto line);
         Task<bool> UpdateAsync(int id, MarkaDto dto);
-        Task<List<MarkaDto>> GeByIdAsync(int id);
+        // Task<List<MarkaDto>> GeByIdAsync(int id);
         Task<List<MarkaDto>> GetAllMarkas();
          
         

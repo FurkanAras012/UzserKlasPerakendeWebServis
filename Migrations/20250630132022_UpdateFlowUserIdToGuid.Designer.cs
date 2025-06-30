@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Uzser.CoreServices.Data;
 
@@ -11,9 +12,11 @@ using Uzser.CoreServices.Data;
 namespace Uzser.CoreServices.Migrations
 {
     [DbContext(typeof(UzserDbContext))]
-    partial class UzserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250630132022_UpdateFlowUserIdToGuid")]
+    partial class UpdateFlowUserIdToGuid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

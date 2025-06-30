@@ -31,6 +31,8 @@ namespace Uzser.CoreServices.Services.Implementations
             return entity.Id;
         }
 
+
+
         public async Task<bool> UpdateAsync(int id, MarkaDto dto)
         {
             Console.WriteLine($"🟡 Update çağrıldı - id: {id}");
@@ -45,11 +47,11 @@ namespace Uzser.CoreServices.Services.Implementations
             return true;
         }
 
-        public async Task<MarkaDto?> GetByIdAsync(int id)
-        {
-            var entity = await _context.Marka.FirstOrDefaultAsync(x => x.Id == id);
-            return entity == null ? null : _mapper.Map<MarkaDto>(entity);
-        }
+        // public async Task<MarkaDto?> GetByIdAsync(int id)
+        // {
+        //     var entity = await _context.Marka.FirstOrDefaultAsync(x => x.Id == id);
+        //     return entity == null ? null : _mapper.Map<MarkaDto>(entity);
+        // }
 
         public async Task<List<MarkaDto>> GetAllMarkas()
         {
@@ -61,6 +63,7 @@ namespace Uzser.CoreServices.Services.Implementations
             else
             {
                 return _mapper.Map<List<MarkaDto>>(entity);
+            }
         }
     }
 }

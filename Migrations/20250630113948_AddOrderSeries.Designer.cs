@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Uzser.CoreServices.Data;
 
@@ -11,9 +12,11 @@ using Uzser.CoreServices.Data;
 namespace Uzser.CoreServices.Migrations
 {
     [DbContext(typeof(UzserDbContext))]
-    partial class UzserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250630113948_AddOrderSeries")]
+    partial class AddOrderSeries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,21 +57,6 @@ namespace Uzser.CoreServices.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UZS_TBL_LOGS");
-                });
-
-            modelBuilder.Entity("Uzser.CoreServices.Models.Entities.FlowUser", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("UZS_VW_FLOWUSERS");
                 });
 
             modelBuilder.Entity("Uzser.CoreServices.Models.Entities.FormDocument", b =>
@@ -322,65 +310,6 @@ namespace Uzser.CoreServices.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UZS_TBL_SATIS_TRA");
-                });
-
-            modelBuilder.Entity("Uzser.CoreServices.Models.Entities.TigerUser", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("UZS_VW_TIGERUSERS");
-                });
-
-            modelBuilder.Entity("Uzser.CoreServices.Models.Entities.UserMapping", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreateUser")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("FlowUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FlowUserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("TigerUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TigerUserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdateUser")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UZS_TBL_USER_MAPPING");
                 });
 
             modelBuilder.Entity("Uzser.CoreServices.Models.Entities.UzserCustomer", b =>

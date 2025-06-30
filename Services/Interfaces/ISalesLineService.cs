@@ -9,7 +9,7 @@ namespace Uzser.CoreServices.Services.Interfaces
         Task<bool> UpdateLineAsync(int id, SalesLineDto dto);
 
         Task<bool> DeleteLineAsync(int id); // ✅ Yeni eklendi
-        Task<List<SalesLineDto>> GetLinesByMasterIdAsync(int flowId);
+        Task<List<SalesLineDto>> GetLinesByMasterIdAsync(int masterId);
          
 
          Task<SalesLineDto> GetLineByIdAsync(int id);

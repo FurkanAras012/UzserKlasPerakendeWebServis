@@ -58,10 +58,10 @@ namespace Uzser.CoreServices.Services.Implementations
         }
 
         // ✅ Listeleme
-        public async Task<List<SalesLineDto>> GetLinesByMasterIdAsync(int flowId)
+        public async Task<List<SalesLineDto>> GetLinesByMasterIdAsync(int masterId)
         {
             var entities = await _context.SalesLine
-                .Where(x => x.FlowId == flowId)
+                .Where(x => x.MasterId == masterId)
                 .ToListAsync();
 
             return _mapper.Map<List<SalesLineDto>>(entities);

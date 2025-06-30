@@ -72,10 +72,10 @@ public async Task<IActionResult> SaveLine([FromBody] SalesLineDto dto)
 
             return NotFound(ResponseWrapper<bool>.Fail("Satır bulunamadı", "NOT_FOUND"));
         }
-         [HttpGet("listlines/{flowId}")]
-        public async Task<IActionResult> GetLinesByMasterId(int flowId)
+         [HttpGet("listlines/{masterId}")]
+        public async Task<IActionResult> GetLinesByMasterId(int masterId)
         {
-         var result = await _service.GetLinesByMasterIdAsync(flowId);
+         var result = await _service.GetLinesByMasterIdAsync(masterId);
          return Ok(ResponseWrapper<List<SalesLineDto>>.SuccessResponse(result));
         }
 

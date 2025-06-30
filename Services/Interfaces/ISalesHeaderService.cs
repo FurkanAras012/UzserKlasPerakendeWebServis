@@ -8,6 +8,7 @@ namespace Uzser.CoreServices.Services.Interfaces
        Task<int> CreateAsync(SalesHeaderDto dto);
         Task<bool> UpdateAsync(int id, SalesHeaderDto dto);
         Task<SalesHeaderDto?> GetByIdAsync(int id); 
+        Task<SalesHeaderDto?> GetByFlowIdAsync(int flowId);
         
     }
 }
