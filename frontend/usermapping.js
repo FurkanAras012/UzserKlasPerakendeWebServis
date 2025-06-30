@@ -1,5 +1,6 @@
-// API Base URL
-const BASE_URL = 'http://localhost:5186/api/v1';
+import { API_CONFIG } from './config.js';
+
+const BASE_URL = API_CONFIG.BASE_URL;
 
 // Global variables to store data
 let flowUsers = [];

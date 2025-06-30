@@ -1,6 +1,7 @@
 import { getQueryParam } from './helpers.js';
 import { showError, showSuccess } from './ui.js';
 import { fetchCustomers } from './api.js';
+import { API_CONFIG } from './config.js';
 
 // Müşteri seçim fonksiyonu
 export function selectCustomer(customer) {
@@ -69,7 +70,7 @@ export async function saveNewCustomer() {
   };
 
   try {
-    const response = await fetch('http://localhost:5186/api/v1/customers', {
+    const response = await fetch(`${API_CONFIG.BASE_URL}/customers`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(customerData)

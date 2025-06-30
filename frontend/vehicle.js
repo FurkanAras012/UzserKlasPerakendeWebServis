@@ -1,5 +1,6 @@
 import { showError } from './ui.js';
 import { fetchVehicles } from './api.js';
+import { API_CONFIG } from './config.js';
 
 // Araç seçim fonksiyonu
 export function selectVehicle(vehicle) {
@@ -45,7 +46,7 @@ export async function saveNewVehicle() {
   }
 
   try {
-    const response = await fetch('http://localhost:5186/api/v1/vehicles', {
+    const response = await fetch(`${API_CONFIG.BASE_URL}/vehicles`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(vehicleData),

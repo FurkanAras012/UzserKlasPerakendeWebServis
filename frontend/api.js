@@ -1,5 +1,7 @@
 import { showError, showSuccess } from './ui.js';
-const BASE = 'http://localhost:5186/api/v1';
+import { API_CONFIG, getApiUrl } from './config.js';
+
+const BASE = API_CONFIG.BASE_URL;
 
 export async function fetchCustomers() {
   try {

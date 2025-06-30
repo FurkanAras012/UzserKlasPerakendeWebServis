@@ -1,6 +1,7 @@
 import { getQueryParam } from './helpers.js';
 import { showError, showSuccess } from './ui.js';
 import { saveLine, deleteLine } from './api.js';
+import { API_CONFIG } from './config.js';
 
 // Global değişkenler
 export let kalemListesi = [];
@@ -274,7 +275,7 @@ export async function fetchSiparisTra(products) {
 
     console.log('fetchSiparisTra - masterId:', masterId);
 
-    const res = await fetch(`http://localhost:5186/api/v1/sales/line/listlines/${masterId}`);
+    const res = await fetch(`${API_CONFIG.BASE_URL}/sales/line/listlines/${masterId}`);
     if (!res.ok) throw new Error("SiparişTra API'sinden veri alınamadı.");
 
     const result = await res.json();
