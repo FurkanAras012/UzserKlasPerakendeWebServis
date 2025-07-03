@@ -1,14 +1,14 @@
 import { getQueryParam } from './helpers.js';
-import { fetchCustomers, fetchProducts, fetchVehicles, fetchSalesByFlowId, getUserMappingByFlowUserId, fetchTigerUsers } from './api.js';
+import { fetchCustomers, fetchProducts, fetchVehicles, fetchSalesByFlowId, getUserMappingByFlowUserId, fetchTigerUsers, fetchCities } from './api.js';
 import { toggleOrderInfo, handleEnter } from './ui.js';
 import { setupDropdowns } from './dropdown.js';
 import { kaydetMas, loadExistingSales, handleNewRecord, generateProforma, createOrder } from './sales.js';
 import { addProduct, resetProductForm, removeProductHandler, editProduct, updateProduct } from './product.js';
-import { openNewCustomerModal, saveNewCustomer } from './customer.js';
+import { openNewCustomerModal, saveNewCustomer, loadCitiesDropdown } from './customer.js';
 import { openNewVehicleModal, saveNewVehicle } from './vehicle.js';
 
 // Global değişkenler
-let customers = [], products = [], vehicles = [], tigerUsers = [];
+let customers = [], products = [], vehicles = [], tigerUsers = [], cities = [];
 
 // Loading yönetimi
 function showLoading(message = 'Veriler Yükleniyor...') {
@@ -85,28 +85,34 @@ async function initApp() {
     console.log('Veriler yükleniyor...');
     showLoading('Müşteri ve Ürün Verileri Yükleniyor...');
     
-    const [customersData, productsData, vehiclesData, tigerUsersData] = await Promise.all([
+    const [customersData, productsData, vehiclesData, tigerUsersData, citiesData] = await Promise.all([
       fetchCustomers(),
       fetchProducts(),
       fetchVehicles(),
-      fetchTigerUsers()
+      fetchTigerUsers(),
+      fetchCities()
     ]);
     
     customers = customersData;
     products = productsData;
     vehicles = vehiclesData;
     tigerUsers = tigerUsersData;
+    cities = citiesData;
     
     console.log('Tüm veriler yüklendi:', {
       customers: customers.length,
       products: products.length, 
       vehicles: vehicles.length,
-      tigerUsers: tigerUsers.length
+      tigerUsers: tigerUsers.length,
+      cities: cities.length
     });
 
     // Dropdown'ları kur
     showLoading('Arayüz Hazırlanıyor...');
     setupDropdowns(customers, products, vehicles);
+    
+    // Cities dropdown'ını yükle
+    loadCitiesDropdown(cities);
 
   // FlowId ile kayıt kontrolü yap - FlowId varsa API'ye sor
   let isNewRecord = true; // Default olarak yeni kayıt varsay

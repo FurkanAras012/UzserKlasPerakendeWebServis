@@ -51,6 +51,23 @@ export async function fetchTigerUsers() {
   }
 }
 
+export async function fetchCities() {
+  try {
+    console.log('fetchCities çağrıldı, URL:', `${BASE}/lookup/cities`);
+    const res = await fetch(`${BASE}/lookup/cities`);
+    console.log('fetchCities response status:', res.status);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    console.log('fetchCities response data:', data);
+    const result = Array.isArray(data) ? data : data.data || [];
+    console.log('fetchCities final result:', result);
+    return result;
+  } catch (error) {
+    console.error('Cities getirilemedi, hata:', error);
+    return [];
+  }
+}
+
 export async function fetchSales(flowId) {
   const res = await fetch(`${BASE}/sales/${flowId}`);
   if (!res.ok) throw res;

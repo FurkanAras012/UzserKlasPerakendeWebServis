@@ -10,6 +10,8 @@ namespace Uzser.CoreServices.Services.Interfaces
 
         Task<List<DepartmentsDto>> GetDepartmentListAsync();
 
-         Task<List<VehiclesDto>> GetVehiclesListAsync();
+        Task<List<VehiclesDto>> GetVehiclesListAsync();
+        
+        Task<List<CitiesDto>> GetCitiesListAsync();
     }
 }

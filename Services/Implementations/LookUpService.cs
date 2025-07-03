@@ -48,5 +48,12 @@ namespace Uzser.CoreServices.Services.Implementations
                 .ProjectTo<VehiclesDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
+
+        public async Task<List<CitiesDto>> GetCitiesListAsync()
+        {
+           return await _erp.Cities
+                .ProjectTo<CitiesDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
     }
 }

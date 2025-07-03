@@ -11,7 +11,7 @@ namespace Uzser.CoreServices.Models.Entities
 
         public string? CreateUser { get; set; }
         public string? UpdateUser { get; set; }
-        public DateTime CreateDate { get; set; } =DateTime.Now;
+        public DateTime CreateDate { get; set; } = DateTime.Now;
         public DateTime UpdateDate { get; set; } = DateTime.Now;
         public byte? WFState { get; set; }
         public int FlowId { get; set; }
@@ -32,6 +32,8 @@ namespace Uzser.CoreServices.Models.Entities
         public string? Description2 { get; set; } = string.Empty;
 
         public float? DiscountRate { get; set; } = 0;
+        
+         public int Status { get; set; } = 0;
 
 
 

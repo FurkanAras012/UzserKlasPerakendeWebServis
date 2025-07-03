@@ -4,8 +4,8 @@ namespace Uzser.CoreServices.Models.DTO
 {
     public class CustomerDto
     {
-      
-     
+
+
 
         public DateTime? CREATEDATE { get; set; }
         public string? CREATEUSER { get; set; } = string.Empty;
@@ -21,5 +21,7 @@ namespace Uzser.CoreServices.Models.DTO
         public int? PAYMENTTYPE { get; set; } = -1;
         public string? EMAIL { get; set; } = string.Empty;
         public int? FLOWID { get; set; } = 0;
+
+        public int? STATUS { get; set; } = 0;
     }
 }

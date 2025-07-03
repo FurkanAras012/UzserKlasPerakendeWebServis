@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Uzser.CoreServices.Data;
 
@@ -11,9 +12,11 @@ using Uzser.CoreServices.Data;
 namespace Uzser.CoreServices.Migrations
 {
     [DbContext(typeof(UzserDbContext))]
-    partial class UzserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250701121732_AddStatusToSalesHeader")]
+    partial class AddStatusToSalesHeader
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,7 +147,7 @@ namespace Uzser.CoreServices.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Markalar");
+                    b.ToTable("Marka");
                 });
 
             modelBuilder.Entity("Uzser.CoreServices.Models.Entities.Model", b =>
@@ -397,9 +400,6 @@ namespace Uzser.CoreServices.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CityId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -419,9 +419,6 @@ namespace Uzser.CoreServices.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("PaymentType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("TaxOffice")

@@ -33,6 +33,8 @@ namespace Uzser.CoreServices.Models.DTO
 
         public float? DiscountRate { get; set; } = 0;
 
+        public int Status { get; set; } = 0;
+
 
 
     }

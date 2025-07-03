@@ -37,6 +37,7 @@ export async function saveNewCustomer() {
   const telephone = document.getElementById("telefon").value.trim();
   const paymentTypeStr = document.getElementById("odemeTipi").value;
   const email = document.getElementById("eposta").value.trim();
+  const cityId = document.getElementById("city").value;
   const userId = getQueryParam("userId") || "unknownUser";
 
   // Zorunlu alan kontrolü
@@ -66,7 +67,8 @@ export async function saveNewCustomer() {
     telephone: telephone,
     paymentType: paymentTypeKey,
     email: email,
-    flowId: flowId
+    flowId: flowId,
+    cityId: cityId ? parseInt(cityId) : 0
   };
 
   try {
@@ -104,5 +106,36 @@ export async function saveNewCustomer() {
   } catch (error) {
     console.error("❌ Cari eklenemedi:", error);
     showError("Cari eklenemedi. Lütfen tekrar deneyiniz.");
+  }
+}
+
+// Şehir dropdown'ını doldur
+export function loadCitiesDropdown(cities) {
+  console.log('loadCitiesDropdown çağrıldı, cities:', cities);
+  const citySelect = document.getElementById('city');
+  console.log('citySelect element:', citySelect);
+  
+  if (citySelect && cities) {
+    console.log('Cities array length:', cities.length);
+    // Mevcut seçenekleri temizle (ilk seçenek hariç)
+    citySelect.innerHTML = '<option value="">Şehir seçiniz...</option>';
+    
+    // Şehirleri alfabetik olarak sırala
+    const sortedCities = cities.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
+    console.log('Sorted cities:', sortedCities);
+    
+    // Şehirleri dropdown'a ekle
+    sortedCities.forEach(city => {
+      const option = document.createElement('option');
+      option.value = city.logicalref;
+      option.textContent = city.name;
+      option.dataset.code = city.code;
+      option.dataset.country = city.country;
+      citySelect.appendChild(option);
+    });
+    
+    console.log('Cities dropdown dolduruldu, toplam seçenek:', citySelect.options.length);
+  } else {
+    console.log('citySelect element bulunamadı veya cities verisi yok');
   }
 }

@@ -37,11 +37,21 @@
     .toggle-option { cursor: pointer; padding: 0.5rem 1rem; border: 1px solid #0d6efd; border-radius: 0.25rem; margin-right: 0.5rem; transition: background-color 0.3s ease, color 0.3s ease; font-weight: bold; border: none; }
     .toggle-option.active { background-color: #0d6efd; color: white; }
     body { font-family: 'Montserrat', sans-serif;  background-size: 150px 150px; animation: fadeIn 1s ease-in-out; }
+    .container-fluid { max-width: none !important; }
     header { background: linear-gradient(to right, #a1c4fd, #c2e9fb); box-shadow: 0 4px 6px rgba(0,0,0,0.1); animation: slideDown 0.8s ease-in-out; }
     .card { border: none; border-radius: 15px; overflow: visible; transition: box-shadow 0.3s ease; background: #fff; }
     .card:hover { box-shadow: 0 6px 10px rgba(0,0,0,0.1); }
-    .form-control, .form-select { border-radius: 10px; transition: box-shadow 0.3s ease, transform 0.3s ease; }
-    .form-control:focus, .form-select:focus { box-shadow: 0 0 8px rgba(161,196,253,0.5); transform: scale(1.02); }
+    .card-header span { font-weight: 1000; font-size: 1.2rem; color: #333; }
+    .form-control, .form-select { 
+      border-radius: 10px; 
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      border: 2px solid #dee2e6 !important;
+    }
+    .form-control:focus, .form-select:focus { 
+      box-shadow: 0 0 8px rgba(161,196,253,0.5); 
+      transform: scale(1.02);
+      border-color: #0d6efd !important;
+    }
     footer { background: linear-gradient(to right, #a1c4fd, #c2e9fb); animation: fadeIn 1.5s ease-in-out; position: fixed; bottom: 0; width: 100%; }
     
     /* Loading Overlay */
@@ -99,7 +109,7 @@
 
   <!-- Üst Bilgi -->
   <header class="bg-white shadow-sm py-3">
-    <div class="container d-flex flex-wrap align-items-center justify-content-between">
+    <div class="container-fluid d-flex flex-wrap align-items-center justify-content-between px-4">
       <div class="d-flex align-items-center">
         <img src="img/klaslogo.png" alt="Logo" class="me-3 logo" style="height:80px;" />
       </div>
@@ -118,7 +128,7 @@
   </header>
 
   <!-- Gövde -->
-  <main class="container my-5">
+  <main class="container-fluid my-5 px-4">
     <!-- Sipariş Üst Bilgisi -->
     <div class="card shadow-sm mb-4">
       <div class="card-header bg-light d-flex justify-content-between align-items-center">
@@ -245,6 +255,7 @@
             <div class="col-md-6"><label class="form-label">Vergi Dairesi</label><input type="text" id="vergiDairesi" class="form-control" /></div>
             <div class="col-12"><label class="form-label">Adres</label><textarea id="adres" class="form-control" rows="2"></textarea></div>
             <div class="col-md-6"><label class="form-label">Telefon</label><input type="tel" id="telefon" class="form-control" /></div>
+            <div class="col-md-6"><label class="form-label">Şehir</label><select id="city" class="form-select"><option value="">Şehir seçiniz...</option></select></div>
             <div class="col-md-6"><label class="form-label">Ödeme Tipi</label><select id="odemeTipi" class="form-select"><option value="">Seçiniz...</option><option value="Nakit">Nakit</option><option value="Kredi Kartı">Kredi Kartı</option></select></div>
             <div class="col-md-6"><label class="form-label">E-posta</label><input type="email" id="eposta" class="form-control" /></div>
           </div>

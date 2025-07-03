@@ -57,11 +57,13 @@ builder.Services.AddDbContext<ErpDbContext>(options =>
 var app = builder.Build();
 
 // Middleware pipeline
-if (app.Environment.IsDevelopment())
+// Swagger'ı hem development hem de production'da etkinleştir
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Uzser Core Services API V1");
+    c.RoutePrefix = "swagger"; // swagger URL'i
+});
 
 // app.UseHttpsRedirection(); // HTTPS zorlama, opsiyonel
 

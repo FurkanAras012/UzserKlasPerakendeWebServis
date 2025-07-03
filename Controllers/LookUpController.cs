@@ -44,5 +44,12 @@ namespace Uzser.CoreServices.Controllers
             var result = await _lookupService.GetVehiclesListAsync();
             return Ok(ResponseWrapper<List<VehiclesDto>>.SuccessResponse(result));
         }
+
+        [HttpGet("cities")]
+        public async Task<IActionResult> GetCities()
+        {
+            var result = await _lookupService.GetCitiesListAsync();
+            return Ok(ResponseWrapper<List<CitiesDto>>.SuccessResponse(result));
+        }
     }
 }
