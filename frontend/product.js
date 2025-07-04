@@ -40,9 +40,8 @@ export function selectProduct(product) {
 
 // Döviz türü dizinleri
 export const currencyKeys = {
-  "TRY": 1,
-  "EUR": 2,
-  "USD": 3
+  "TRY": 0,
+
 };
 
 function getCurrencyKey(currency) {
@@ -71,7 +70,7 @@ export async function addProduct() {
   const qty = parseFloat(qtyInput.value);
   const price = parseFloat(priceInput.value);
   const discount = parseFloat(discountInput.value) || 0;
-  const currency = getCurrencyKey(currencyInput.value);
+  const currency = 0; // Sabit TRY
 
   // Validasyon
   if (!code || !name) return showError('Lütfen geçerli bir ürün seçin!');
@@ -109,7 +108,7 @@ export async function addProduct() {
       stockname: created.stockName || name,
       quantity: created.amount,
       price: created.price,
-      currency: currencyInput.value,
+      currency: 'TRY', // Sabit TRY
       discount: created.discountRate,
     });
 
@@ -181,7 +180,7 @@ export function editProduct(idx) {
   document.getElementById('productSelection').dataset.name = kalem.stockname;
   document.getElementById('productQuantity').value = kalem.quantity;
   document.getElementById('productPrice').value = kalem.price;
-  document.getElementById('currencyType').value = kalem.currency;
+  document.getElementById('currencyType').value = 'TRY'; // Sabit TRY
   document.getElementById('productDiscount').value = kalem.discount;
   
   // Butonu güncelleme moduna çevir
@@ -203,7 +202,7 @@ export async function updateProduct(idx) {
   const name = document.getElementById('productSelection').dataset.name;
   const qty = parseFloat(document.getElementById('productQuantity').value);
   const price = parseFloat(document.getElementById('productPrice').value);
-  const currency = document.getElementById('currencyType').value;
+  const currency = 'TRY'; // Sabit TRY
   const discount = parseFloat(document.getElementById('productDiscount').value) || 0;
 
   // Validasyon
@@ -228,7 +227,7 @@ export async function updateProduct(idx) {
     amount: qty,
     price: price,
     discountRate: discount,
-    currencyId: getCurrencyKey(currency)
+    currencyId: 0 // Sabit TRY (code: 0)
   };
 
   try {
@@ -239,7 +238,7 @@ export async function updateProduct(idx) {
     kalem.stockname = name;
     kalem.quantity = qty;
     kalem.price = price;
-    kalem.currency = currency;
+    kalem.currency = 'TRY'; // Sabit TRY
     kalem.discount = discount;
 
     // Tabloyu güncelle ve formu temizle
@@ -291,7 +290,7 @@ export async function fetchSiparisTra(products) {
     if (!res.ok) throw new Error("SiparişTra API'sinden veri alınamadı.");
 
     const result = await res.json();
-    const currencyMap = { 1:"TRY", 2:"EUR", 3:"USD" };
+    const currencyMap = { 0:"TRY", 1:"TRY", 2:"EUR", 3:"USD" }; // 0 ve 1 için TRY
 
     console.log('fetchSiparisTra - products array:', products);
     console.log('fetchSiparisTra - result.data:', result.data);
@@ -329,7 +328,7 @@ export async function fetchSiparisTra(products) {
         stockname: name,
         quantity: item.amount,
         price: item.price,
-        currency: currencyMap[item.currencyId] ?? "Bilinmiyor Döviz",
+        currency: "TRY", // Sabit TRY
         discount: item.discountRate ?? 0,
       };
     });
