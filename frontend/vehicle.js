@@ -11,8 +11,73 @@ export function selectVehicle(vehicle) {
   document.getElementById('vehicleDropdown').style.display = 'none';
 }
 
-// Yeni araç modal açma
+// Araç detaylarını görüntüleme modalını açma
+export async function openVehicleDetailModal(vehicle) {
+  console.log('🚗 openVehicleDetailModal çağrıldı, vehicle:', vehicle);
+  
+  try {
+    const vehicleId = vehicle.id;
+    console.log('📋 Vehicle ID:', vehicleId);
+    
+    const response = await fetch(`${API_CONFIG.BASE_URL}/vehicles/${vehicleId}`);
+    const result = await response.json();
+    
+    console.log('🌐 API response:', result);
+    
+    if (!result.success || !result.data) {
+      console.log('⚠️ Araç detayları getirilemedi');
+      showError('Araç detayları getirilemedi.');
+      return;
+    }
+    
+    const vehicleData = result.data;
+    console.log('✅ Araç verisi alındı:', vehicleData);
+    
+    // Readonly form alanlarını doldur
+    document.getElementById('viewVehiclePlate').value = vehicleData.vehiclePlate || '';
+    document.getElementById('viewVehicleChassis').value = vehicleData.chassisNumber || '';
+    document.getElementById('viewVehicleEngine').value = vehicleData.engineNumber || '';
+    document.getElementById('viewVehicleBrand').value = vehicleData.brand || '';
+    document.getElementById('viewVehicleModel').value = vehicleData.model || '';
+    document.getElementById('viewVehicleYear').value = vehicleData.modelYear || '';
+    document.getElementById('viewVehicleFuelType').value = vehicleData.fuelType || '';
+    document.getElementById('viewVehiclePower').value = vehicleData.enginePower || '';
+    document.getElementById('viewVehicleKm').value = vehicleData.kilometer || '';
+    document.getElementById('viewVehicleTireDepth').value = vehicleData.tireTreadDepth || '';
+    document.getElementById('viewVehicleBatteryStatus').value = vehicleData.batteryStatus || '';
+    
+    console.log('📝 Modal alanları dolduruldu');
+    
+    // Modal'ı aç
+    const modalEl = document.getElementById('vehicleDetailModal');
+    if (modalEl) {
+      console.log('🎭 Vehicle modal açılıyor...');
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    } else {
+      console.error('❌ vehicleDetailModal element bulunamadı!');
+    }
+  } catch (error) {
+    console.error('❌ Araç detayları getirilemedi:', error);
+    showError('Araç detayları getirilemedi.');
+  }
+}
+
+// Yeni araç modal açma - formu temizle
 export function openNewVehicleModal() {
+  // Formu temizle
+  document.getElementById('newVehiclePlate').value = '';
+  document.getElementById('newVehicleChassis').value = '';
+  document.getElementById('newVehicleEngine').value = '';
+  document.getElementById('newVehicleBrand').value = '';
+  document.getElementById('newVehicleModel').value = '';
+  document.getElementById('newVehicleYear').value = '';
+  document.getElementById('newVehicleFuelType').value = '';
+  document.getElementById('newVehiclePower').value = '';
+  document.getElementById('newVehicleKm').value = '';
+  document.getElementById('newVehicleTireDepth').value = '';
+  document.getElementById('newVehicleBatteryStatus').value = '';
+  
   const modalEl = document.getElementById('newVehicleModal');
   if (modalEl) {
     const modal = new bootstrap.Modal(modalEl);

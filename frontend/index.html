@@ -54,6 +54,146 @@
     }
     footer { background: linear-gradient(to right, #a1c4fd, #c2e9fb); animation: fadeIn 1.5s ease-in-out; position: fixed; bottom: 0; width: 100%; }
     
+    /* Dropdown customization - Bootstrap override */
+    #customerDropdown,
+    #vehicleDropdown,
+    #productDropdown,
+    .dropdown-menu {
+      border-radius: 8px !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+      border: 1px solid #e0e0e0 !important;
+      max-height: 250px !important;
+      min-height: auto !important;
+      height: auto !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 1050 !important;
+      background: white !important;
+      /* Agresif boyut sınırları */
+      max-width: 100% !important;
+      width: 100% !important;
+      bottom: auto !important;
+      transform: none !important;
+      inset: auto !important;
+    }
+    
+    #customerDropdown .dropdown-item,
+    #vehicleDropdown .dropdown-item,
+    #productDropdown .dropdown-item,
+    .dropdown-item {
+      padding: 0.75rem 1rem !important;
+      font-size: 1rem !important;
+      border-bottom: 1px solid #f0f0f0 !important;
+      line-height: 1.4 !important;
+      margin: 0 !important;
+      min-height: 48px !important;
+      max-height: 48px !important;
+      height: 48px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      font-weight: 500 !important;
+      color: #333 !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      background-color: #fff !important;
+    }
+    
+    #customerDropdown .dropdown-item:hover,
+    #vehicleDropdown .dropdown-item:hover,
+    #productDropdown .dropdown-item:hover,
+    .dropdown-item:hover {
+      background-color: #f8f9fa !important;
+      color: #0d6efd !important;
+      transform: translateX(2px) !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+    
+    #customerDropdown .dropdown-item:last-child,
+    #vehicleDropdown .dropdown-item:last-child,
+    #productDropdown .dropdown-item:last-child,
+    .dropdown-item:last-child {
+      border-bottom: none !important;
+    }
+    
+    /* Dropdown item içindeki butonlar */
+    #customerDropdown .btn-sm,
+    #vehicleDropdown .btn-sm,
+    #productDropdown .btn-sm,
+    .dropdown-item .btn-sm {
+      padding: 0.25rem 0.375rem !important;
+      font-size: 0.75rem !important;
+      line-height: 1.2 !important;
+      height: 30px !important;
+      width: 30px !important;
+      min-width: 30px !important;
+      margin: 0 !important;
+      border: 1px solid #6c757d !important;
+      border-radius: 4px !important;
+      background-color: #fff !important;
+      color: #6c757d !important;
+      transition: all 0.2s ease !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    
+    #customerDropdown .btn-sm:hover,
+    #vehicleDropdown .btn-sm:hover,
+    #productDropdown .btn-sm:hover,
+    .dropdown-item .btn-sm:hover {
+      background-color: #0d6efd !important;
+      color: #fff !important;
+      border-color: #0d6efd !important;
+      transform: scale(1.05) !important;
+    }
+    
+    /* Dropdown scroll bar customization */
+    #customerDropdown::-webkit-scrollbar,
+    #vehicleDropdown::-webkit-scrollbar,
+    #productDropdown::-webkit-scrollbar,
+    .dropdown-menu::-webkit-scrollbar {
+      width: 8px !important;
+    }
+    
+    #customerDropdown::-webkit-scrollbar-track,
+    #vehicleDropdown::-webkit-scrollbar-track,
+    #productDropdown::-webkit-scrollbar-track,
+    .dropdown-menu::-webkit-scrollbar-track {
+      background: #f1f1f1 !important;
+      border-radius: 10px !important;
+    }
+    
+    #customerDropdown::-webkit-scrollbar-thumb,
+    #vehicleDropdown::-webkit-scrollbar-thumb,
+    #productDropdown::-webkit-scrollbar-thumb,
+    .dropdown-menu::-webkit-scrollbar-thumb {
+      background: #c1c1c1 !important;
+      border-radius: 10px !important;
+    }
+    
+    #customerDropdown::-webkit-scrollbar-thumb:hover,
+    #vehicleDropdown::-webkit-scrollbar-thumb:hover,
+    #productDropdown::-webkit-scrollbar-thumb:hover,
+    .dropdown-menu::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8 !important;
+    }
+    
+    /* Bootstrap dropdown override */
+    .dropdown-menu.show {
+      max-height: 250px !important;
+      overflow-y: auto !important;
+    }
+    
     /* Loading Overlay */
     .loading-overlay {
       position: fixed;
@@ -139,19 +279,19 @@
         <div class="row gx-5 gy-4">
           <div class="col-md-6">
             <label for="customerSelection" class="form-label">Müşteri Seçimi</label>
-            <div class="input-group">
+            <div class="input-group position-relative">
               <input type="text" id="customerSelection" class="form-control" placeholder="Müşteri adı veya kodu..." autocomplete="off" />
               <button class="btn btn-outline-secondary" onclick="openNewCustomerModal()"><i class="bi bi-plus-lg"></i></button>
+              <ul class="dropdown-menu position-absolute w-100" id="customerDropdown" style="max-height:250px!important;overflow-y:auto!important;z-index:1050!important;padding:0!important;top:100%!important;left:0!important;right:0!important;"></ul>
             </div>
-            <ul class="dropdown-menu w-100" id="customerDropdown" style="max-height:200px;overflow-y:auto;"></ul>
           </div>
           <div class="col-md-6">
             <label for="vehicleSelection" class="form-label">Araç Seçimi</label>
-            <div class="input-group">
+            <div class="input-group position-relative">
               <input type="text" id="vehicleSelection" class="form-control" placeholder="Plaka veya şasi numarası..." autocomplete="off" />
               <button class="btn btn-outline-secondary" onclick="openNewVehicleModal()"><i class="bi bi-plus-lg"></i></button>
+              <ul class="dropdown-menu position-absolute w-100" id="vehicleDropdown" style="max-height:250px!important;overflow-y:auto!important;z-index:1050!important;padding:0!important;top:100%!important;left:0!important;right:0!important;"></ul>
             </div>
-            <ul class="dropdown-menu w-100" id="vehicleDropdown" style="max-height:200px;overflow-y:auto;"></ul>
           </div>
         </div>
         <div class="row gx-4 gy-4 mt-3">
@@ -193,8 +333,10 @@
         <div class="row gx-4 gy-4">
           <div class="col-md-9">
             <label for="productSelection" class="form-label">Ürün Seçimi</label>
-            <input type="text" id="productSelection" class="form-control" placeholder="Ürün adı veya kodu..." autocomplete="off" />
-            <ul class="dropdown-menu w-100" id="productDropdown" style="max-height:200px;overflow-y:auto;"></ul>
+            <div class="position-relative">
+              <input type="text" id="productSelection" class="form-control" placeholder="Ürün adı veya kodu..." autocomplete="off" />
+              <ul class="dropdown-menu position-absolute w-100" id="productDropdown" style="max-height:250px!important;overflow-y:auto!important;z-index:1050!important;padding:0!important;top:100%!important;left:0!important;right:0!important;"></ul>
+            </div>
           </div>
           <div class="col-md-3">
             <label for="productQuantity" class="form-label">Miktar</label>
@@ -250,12 +392,12 @@
         <div class="modal-body">
           <div class="row g-3">
             <div class="col-md-6"><label class="form-label">Cari İsim *</label><input type="text" id="newCustomerName" class="form-control" /></div>
-            <div class="col-md-6"><label class="form-label">Müşteri Kodu *</label><input type="text" id="newCustomerCode" class="form-control" /></div>
+            <div class="col-md-6"><label class="form-label">Müşteri Kodu</label><input type="text" id="newCustomerCode" class="form-control" placeholder="Otomatik Üretilecektir" readonly /></div>
             <div class="col-md-6"><label class="form-label">VKN/TC *</label><input type="text" id="vknTc" class="form-control" /></div>
             <div class="col-md-6"><label class="form-label">Vergi Dairesi</label><input type="text" id="vergiDairesi" class="form-control" /></div>
             <div class="col-12"><label class="form-label">Adres</label><textarea id="adres" class="form-control" rows="2"></textarea></div>
             <div class="col-md-6"><label class="form-label">Telefon</label><input type="tel" id="telefon" class="form-control" /></div>
-            <div class="col-md-6"><label class="form-label">Şehir</label><select id="city" class="form-select"><option value="">Şehir seçiniz...</option></select></div>
+            <div class="col-md-6"><label class="form-label">Şehir *</label><select id="city" class="form-select"><option value="">Şehir seçiniz...</option></select></div>
             <div class="col-md-6"><label class="form-label">Ödeme Tipi</label><select id="odemeTipi" class="form-select"><option value="">Seçiniz...</option><option value="Nakit">Nakit</option><option value="Kredi Kartı">Kredi Kartı</option></select></div>
             <div class="col-md-6"><label class="form-label">E-posta</label><input type="email" id="eposta" class="form-control" /></div>
           </div>
@@ -284,6 +426,64 @@
       </div></div>
       <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">İptal</button><button class="btn btn-primary" onclick="saveNewVehicle()">Kaydet</button></div>
     </div></div>
+  </div>
+
+  <!-- Modal: Müşteri Detayları (Readonly) -->
+  <div class="modal fade" id="customerDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Müşteri Detayları</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Cari İsim</label><input type="text" id="viewCustomerName" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Müşteri Kodu</label><input type="text" id="viewCustomerCode" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">VKN/TC</label><input type="text" id="viewVknTc" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Vergi Dairesi</label><input type="text" id="viewVergiDairesi" class="form-control" readonly /></div>
+            <div class="col-12"><label class="form-label">Adres</label><textarea id="viewAdres" class="form-control" rows="2" readonly></textarea></div>
+            <div class="col-md-6"><label class="form-label">Telefon</label><input type="tel" id="viewTelefon" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Şehir</label><input type="text" id="viewCity" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Ödeme Tipi</label><input type="text" id="viewOdemeTipi" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">E-posta</label><input type="email" id="viewEposta" class="form-control" readonly /></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Araç Detayları (Readonly) -->
+  <div class="modal fade" id="vehicleDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Araç Detayları</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Plaka</label><input type="text" id="viewVehiclePlate" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Şasi No</label><input type="text" id="viewVehicleChassis" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Motor No</label><input type="text" id="viewVehicleEngine" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Marka</label><input type="text" id="viewVehicleBrand" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Model</label><input type="text" id="viewVehicleModel" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Model Yılı</label><input type="number" id="viewVehicleYear" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Yakıt Tipi</label><input type="text" id="viewVehicleFuelType" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Motor Gücü (HP)</label><input type="number" id="viewVehiclePower" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Km</label><input type="number" id="viewVehicleKm" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Diş Derinlik</label><input type="text" id="viewVehicleTireDepth" class="form-control" readonly /></div>
+            <div class="col-md-6"><label class="form-label">Akü Durumu</label><input type="text" id="viewVehicleBatteryStatus" class="form-control" readonly /></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- JS Kütüphaneler Sonrası -->

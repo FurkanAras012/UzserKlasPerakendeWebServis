@@ -27,7 +27,7 @@ namespace Uzser.CoreServices.Controllers
                 var id = await _customerService.CreateAsync(dto);
 
                 // ✅ Log: Ekleme
-                await _logService.LogAsync("add", dto.CreateUser, dto);
+                await _logService.LogAsync("add", dto.CreateUser ?? "unknown", dto);
 
                 return Ok(ResponseWrapper<int>.SuccessResponse(id, "Cari başarıyla eklendi"));
             }
@@ -36,10 +36,30 @@ namespace Uzser.CoreServices.Controllers
                 var success = await _customerService.UpdateAsync(dto.Id, dto);
 
                 // ✅ Log: Güncelleme
-                await _logService.LogAsync("upd", dto.UpdateUser, dto);
+                await _logService.LogAsync("upd", dto.UpdateUser ?? "unknown", dto);
 
                 return Ok(ResponseWrapper<bool>.SuccessResponse(success, "Cari başarıyla güncellendi"));
             }
+        }
+
+        [HttpGet("by-code/{customerCode}")]
+        public async Task<IActionResult> GetByCode(string customerCode)
+        {
+            var result = await _customerService.GetByCodeAsync(customerCode);
+            if (result == null)
+                return Ok(ResponseWrapper<UzserCustomerDto?>.SuccessResponse(null, "Müşteri bulunamadı"));
+
+            return Ok(ResponseWrapper<UzserCustomerDto>.SuccessResponse(result));
+        }
+
+        [HttpGet("by-flowid/{flowId}")]
+        public async Task<IActionResult> GetByFlowId(int flowId)
+        {
+            var result = await _customerService.GetByFlowIdAsync(flowId);
+            if (result == null)
+                return Ok(ResponseWrapper<UzserCustomerDto?>.SuccessResponse(null, "FlowId ile müşteri bulunamadı"));
+
+            return Ok(ResponseWrapper<UzserCustomerDto>.SuccessResponse(result));
         }
 
         [HttpGet("{id}")]
@@ -47,7 +67,7 @@ namespace Uzser.CoreServices.Controllers
         {
             var result = await _customerService.GetByIdAsync(id);
             if (result == null)
-                return Ok(ResponseWrapper<UzserCustomerDto>.SuccessResponse(null, "Yeni kayıt oluşturulacak"));
+                return Ok(ResponseWrapper<UzserCustomerDto?>.SuccessResponse(null, "Yeni kayıt oluşturulacak"));
 
             return Ok(ResponseWrapper<UzserCustomerDto>.SuccessResponse(result));
         }

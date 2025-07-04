@@ -51,5 +51,17 @@ namespace Uzser.CoreServices.Services.Implementations
             var entity = await _context.UzserCustomers.FirstOrDefaultAsync(x => x.FlowId == id);
             return entity == null ? null : _mapper.Map<UzserCustomerDto>(entity);
         }
+
+        public async Task<UzserCustomerDto?> GetByCodeAsync(string customerCode)
+        {
+            var entity = await _context.UzserCustomers.FirstOrDefaultAsync(x => x.CustomerCode == customerCode);
+            return entity == null ? null : _mapper.Map<UzserCustomerDto>(entity);
+        }
+
+        public async Task<UzserCustomerDto?> GetByFlowIdAsync(int flowId)
+        {
+            var entity = await _context.UzserCustomers.FirstOrDefaultAsync(x => x.FlowId == flowId);
+            return entity == null ? null : _mapper.Map<UzserCustomerDto>(entity);
+        }
     }
 }

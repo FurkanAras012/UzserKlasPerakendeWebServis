@@ -114,7 +114,15 @@ export function populateFormWithSalesData(data, customers, tigerUsers = []) {
   // Customer input'unu hem value hem dataset ile güncelle
   const custInput = document.getElementById('customerSelection');
   custInput.dataset.code = custCode;
-  custInput.value = custCode ? `${custCode} - ${custName}` : '';
+  custInput.dataset.name = custName;
+  // Müşteri kodu varsa "KOD - AD" formatında, yoksa sadece müşteri adını göster
+  if (custCode && custName) {
+    custInput.value = `${custCode} - ${custName}`;
+  } else if (custName) {
+    custInput.value = custName;
+  } else {
+    custInput.value = '';
+  }
 
   // Vehicle input'u hem value hem dataset ile güncelle
   const plate = data.licensePlate || '';

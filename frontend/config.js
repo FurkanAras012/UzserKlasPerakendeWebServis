@@ -19,7 +19,7 @@ export function getApiUrl(endpoint = '') {
 }
 
 // Environment detection - Live Server için özelleştirilmiş
-export const IS_PRODUCTION = true; // Manual production test için
+export const IS_PRODUCTION = false; // Manual production test için
 
 // Auto-configure based on environment
 if (IS_PRODUCTION) {

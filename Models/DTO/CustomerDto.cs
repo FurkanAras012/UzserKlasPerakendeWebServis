@@ -4,9 +4,7 @@ namespace Uzser.CoreServices.Models.DTO
 {
     public class CustomerDto
     {
-
-
-
+        public int ID { get; set; }
         public DateTime? CREATEDATE { get; set; }
         public string? CREATEUSER { get; set; } = string.Empty;
         public DateTime? UPDATEDATE { get; set; }

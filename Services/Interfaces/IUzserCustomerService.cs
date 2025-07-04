@@ -8,6 +8,8 @@ namespace Uzser.CoreServices.Services.Interfaces
         Task<int> CreateAsync(UzserCustomerDto dto);
         Task<bool> UpdateAsync(int id, UzserCustomerDto dto);
         Task<UzserCustomerDto?> GetByIdAsync(int id);
+        Task<UzserCustomerDto?> GetByCodeAsync(string customerCode);
+        Task<UzserCustomerDto?> GetByFlowIdAsync(int flowId);
         // Task<bool> DeleteByIdAsync(int id);
        // Task<List<VehiclesDto>> GetAllAsync();
     }

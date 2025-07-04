@@ -4,8 +4,8 @@ import { toggleOrderInfo, handleEnter } from './ui.js';
 import { setupDropdowns } from './dropdown.js';
 import { kaydetMas, loadExistingSales, handleNewRecord, generateProforma, createOrder } from './sales.js';
 import { addProduct, resetProductForm, removeProductHandler, editProduct, updateProduct } from './product.js';
-import { openNewCustomerModal, saveNewCustomer, loadCitiesDropdown } from './customer.js';
-import { openNewVehicleModal, saveNewVehicle } from './vehicle.js';
+import { openNewCustomerModal, saveNewCustomer, loadCitiesDropdown, openCustomerDetailModal } from './customer.js';
+import { openNewVehicleModal, saveNewVehicle, openVehicleDetailModal } from './vehicle.js';
 
 // Global değişkenler
 let customers = [], products = [], vehicles = [], tigerUsers = [], cities = [];
@@ -107,10 +107,6 @@ async function initApp() {
       cities: cities.length
     });
 
-    // Dropdown'ları kur
-    showLoading('Arayüz Hazırlanıyor...');
-    setupDropdowns(customers, products, vehicles);
-    
     // Cities dropdown'ını yükle
     loadCitiesDropdown(cities);
 
@@ -156,6 +152,10 @@ async function initApp() {
     await loadPlasiyer(userId);
   }
 
+  // Dropdown'ları kur (isNewRecord belirlendikten sonra)
+  showLoading('Arayüz Hazırlanıyor...');
+  setupDropdowns(customers, products, vehicles, isNewRecord);
+
     // Buton ve klavye event'leri
     document.getElementById('toggleOrderInfo').onclick = toggleOrderInfo;
     document.getElementById('productQuantity').onkeypress = e => handleEnter(e, addProduct);
@@ -192,6 +192,13 @@ window.generateProforma = generateProforma;
 window.fetchCustomers = fetchCustomers;
 window.fetchProducts = fetchProducts;
 window.fetchVehicles = fetchVehicles;
+
+// Detay görüntüleme fonksiyonları
+window.openCustomerDetailModal = openCustomerDetailModal;
+window.openVehicleDetailModal = openVehicleDetailModal;
+
+// Cities'i global değişken olarak ekle
+window.cities = cities;
 
 // Uygulama başlat
 window.addEventListener('DOMContentLoaded', initApp);

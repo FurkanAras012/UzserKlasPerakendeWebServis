@@ -20,10 +20,22 @@ export function getMasterId() {
 // Ürün seçim fonksiyonu
 export function selectProduct(product) {
   const input = document.getElementById('productSelection');
-  input.value = `${product.code} - ${product.name}`;
-  input.dataset.code = product.code;
-  input.dataset.name = product.name;
-  document.getElementById('productDropdown').style.display = 'none';
+  // Product objesi için doğru field'ları kullan
+  const productCode = product.stockCode || product.code || '';
+  const productName = product.stockName || product.name || '';
+  
+  input.value = `${productCode} - ${productName}`;
+  input.dataset.code = productCode;
+  input.dataset.name = productName;
+  
+  // Araç ve müşteri seçimiyle uyumlu şekilde dropdown'ı kapat
+  const dd = document.getElementById('productDropdown');
+  if (dd) {
+    dd.style.display = 'none';
+    dd.style.visibility = 'hidden';
+    dd.style.opacity = '0';
+    dd.style.pointerEvents = 'none';
+  }
 }
 
 // Döviz türü dizinleri
