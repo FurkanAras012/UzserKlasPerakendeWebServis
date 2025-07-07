@@ -3,6 +3,29 @@ import { showError, showSuccess } from './ui.js';
 import { fetchCustomers } from './api.js';
 import { API_CONFIG } from './config.js';
 
+// İmza kutucuklarını güncelleme fonksiyonu
+export function updateSignatureBoxes() {
+  // Müşteri adını al
+  const customerInput = document.getElementById('customerSelection');
+  const customerName = customerInput.dataset.name || '';
+  
+  // Plasiyer adını al
+  const plasiyerInput = document.getElementById('plasiyerInput');
+  const plasiyerName = plasiyerInput.value || '';
+  
+  // İmza kutucuklarını güncelle
+  const customerSignatureElement = document.getElementById('customerSignatureName');
+  const plasiyerSignatureElement = document.getElementById('plasiyerSignatureName');
+  
+  if (customerSignatureElement) {
+    customerSignatureElement.textContent = customerName || '________________________';
+  }
+  
+  if (plasiyerSignatureElement) {
+    plasiyerSignatureElement.textContent = plasiyerName || '________________________';
+  }
+}
+
 // Müşteri seçim fonksiyonu
 export function selectCustomer(customer) {
   const input = document.getElementById('customerSelection');
@@ -17,6 +40,8 @@ export function selectCustomer(customer) {
     dd.style.opacity = '0';
     dd.style.pointerEvents = 'none';
   }
+  // İmza kutucuklarını güncelle
+  updateSignatureBoxes();
 }
 
 // Yeni müşteri modal açma

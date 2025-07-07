@@ -4,11 +4,12 @@ import { toggleOrderInfo, handleEnter } from './ui.js';
 import { setupDropdowns } from './dropdown.js';
 import { kaydetMas, loadExistingSales, handleNewRecord, generateProforma, createOrder } from './sales.js';
 import { addProduct, resetProductForm, removeProductHandler, editProduct, updateProduct } from './product.js';
-import { openNewCustomerModal, saveNewCustomer, loadCitiesDropdown, openCustomerDetailModal } from './customer.js';
+import { openNewCustomerModal, saveNewCustomer, loadCitiesDropdown, openCustomerDetailModal, updateSignatureBoxes } from './customer.js';
 import { openNewVehicleModal, saveNewVehicle, openVehicleDetailModal } from './vehicle.js';
 
 // Global değişkenler
 let customers = [], products = [], vehicles = [], tigerUsers = [], cities = [];
+let siparisTarihiPicker, teslimTarihiPicker;
 
 // Loading yönetimi
 function showLoading(message = 'Veriler Yükleniyor...') {
@@ -48,6 +49,8 @@ async function loadPlasiyer(userId) {
       // Plasiyer ID'sini data attribute olarak sakla
       plasiyerInput.dataset.plasiyerId = userMapping.tigerUserId;
       console.log('Plasiyer yüklendi:', userMapping.tigerUserName, 'ID:', userMapping.tigerUserId);
+      // İmza kutucuklarını güncelle
+      updateSignatureBoxes();
     } else {
       console.log('Bu kullanıcı için plasiyer eşleştirmesi bulunamadı');
       document.getElementById('plasiyerInput').value = 'Plasiyer eşleştirmesi bulunamadı';
@@ -68,18 +71,38 @@ async function initApp() {
     const userId = getQueryParam('userId');
 
     // Tarih seçiciler
-    flatpickr('#siparisTarihi', {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('tr-TR', {
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit'
+    });
+    
+    // Header tarih alanını doldur
+    document.getElementById('headerTarih').value = formattedDate;
+    
+    siparisTarihiPicker = flatpickr('#siparisTarihi', {
       enableTime: true,
       dateFormat: 'Y-m-d',
       defaultDate: new Date(),
       locale: flatpickr.l10ns.tr
     });
-    flatpickr('#teslimTarihi', {
+    
+    teslimTarihiPicker = flatpickr('#teslimTarihi', {
       enableTime: true,
       dateFormat: 'Y-m-d',
       defaultDate: new Date(),
       locale: flatpickr.l10ns.tr
     });
+    
+    console.log('Flatpickr instances oluşturuldu:', {
+      siparisTarihiPicker: !!siparisTarihiPicker,
+      teslimTarihiPicker: !!teslimTarihiPicker
+    });
+
+    // Flatpickr instance'larını hemen global yap
+    window.siparisTarihiPicker = siparisTarihiPicker;
+    window.teslimTarihiPicker = teslimTarihiPicker;
 
     // Lookup verileri paralel olarak yükle
     console.log('Veriler yükleniyor...');
@@ -199,6 +222,10 @@ window.openVehicleDetailModal = openVehicleDetailModal;
 
 // Cities'i global değişken olarak ekle
 window.cities = cities;
+
+// Flatpickr instance'larını global yap
+window.siparisTarihiPicker = siparisTarihiPicker;
+window.teslimTarihiPicker = teslimTarihiPicker;
 
 // Uygulama başlat
 window.addEventListener('DOMContentLoaded', initApp);

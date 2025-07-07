@@ -154,6 +154,9 @@ export function populateProductTable() {
 
   // Tabloyu göster/gizle
   table.style.display = kalemListesi.length ? 'table' : 'none';
+  
+  // Summary güncellemesi
+  updateSummary();
 }
 
 // Satır sil
@@ -337,5 +340,57 @@ export async function fetchSiparisTra(products) {
     populateProductTable();
   } catch (err) {
     console.error("❌ SiparişTra yüklenemedi", err);
+  }
+}
+
+// Summary hesaplama fonksiyonları
+export function updateSummary() {
+  let subTotal = 0;
+  let totalDiscountAmount = 0;
+  let totalItems = 0;
+  let totalQuantity = 0;
+
+  // Kalem bazında iskonto hesaplama
+  kalemListesi.forEach(item => {
+    const price = parseFloat(item.price) || 0;
+    const quantity = parseInt(item.quantity) || 0;
+    const discount = parseFloat(item.discount) || 0;
+    
+    const lineSubTotal = price * quantity;
+    const lineDiscountAmount = lineSubTotal * (discount / 100);
+    
+    subTotal += lineSubTotal;
+    totalDiscountAmount += lineDiscountAmount;
+    totalItems++;
+    totalQuantity += quantity;
+  });
+
+  // Genel iskonto hesaplama (sipariş üst bilgisi)
+  const generalDiscountElement = document.getElementById('iskontoOrani');
+  const generalDiscountRate = parseFloat(generalDiscountElement?.value) || 0;
+  
+  // Genel iskonto, kalem bazında iskonto uygulandıktan sonraki ara toplam üzerinden hesaplanır
+  const subTotalAfterLineDiscounts = subTotal - totalDiscountAmount;
+  const generalDiscountAmount = subTotalAfterLineDiscounts * (generalDiscountRate / 100);
+  
+  // Toplam iskonto tutarı: kalem bazında iskonto + genel iskonto
+  const totalDiscountAmountWithGeneral = totalDiscountAmount + generalDiscountAmount;
+  
+  // Genel toplam: ara toplam - toplam iskonto tutarı
+  const grandTotal = subTotal - totalDiscountAmountWithGeneral;
+
+  // DOM güncellemeleri
+  document.getElementById('subTotal').textContent = `${subTotal.toFixed(2)} TRY`;
+  document.getElementById('discountAmount').textContent = `${totalDiscountAmountWithGeneral.toFixed(2)} TRY`;
+  document.getElementById('grandTotal').textContent = `${grandTotal.toFixed(2)} TRY`;
+  document.getElementById('totalItems').textContent = totalItems.toString();
+  document.getElementById('totalQuantity').textContent = totalQuantity.toString();
+
+  // Summary alanını göster/gizle
+  const summarySection = document.getElementById('summarySection');
+  if (kalemListesi.length > 0) {
+    summarySection.style.display = 'block';
+  } else {
+    summarySection.style.display = 'none';
   }
 }
