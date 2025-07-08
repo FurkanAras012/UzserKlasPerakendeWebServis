@@ -1,5 +1,5 @@
-import { showError, showSuccess } from './ui.js';
-import { API_CONFIG, getApiUrl } from './config.js';
+import { showError, showSuccess } from '../components/ui.js';
+import { API_CONFIG, getApiUrl } from '../config.js';
 
 const BASE = API_CONFIG.BASE_URL;
 

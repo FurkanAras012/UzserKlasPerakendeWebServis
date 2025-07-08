@@ -1,11 +1,12 @@
-import { getQueryParam, formatDateForInput } from './helpers.js';
+import { getQueryParam, formatDateForInput } from '../services/helpers.js';
 import { showError } from './ui.js';
-import { fetchSales, saveMaster, generateOrderNumber, fetchSalesByFlowId } from './api.js';
+import { fetchSales, saveMaster, generateOrderNumber, fetchSalesByFlowId } from '../services/api.js';
 import { setMasterId, fetchSiparisTra, updateSummary } from './product.js';
 import { updateSignatureBoxes } from './customer.js';
 
 // Üst bilgiyi kaydet
 export async function kaydetMas(customers, products, tigerUsers) {
+ 
   // Master ID (0 ise yeni kayıt)
   const masId = parseInt(document.getElementById('masId').value) || 0;
 
@@ -14,6 +15,16 @@ export async function kaydetMas(customers, products, tigerUsers) {
   const flowId = parseInt(getQueryParam('flowId')) || 0;
   const customerCode = document.getElementById('customerSelection').dataset.code || '';
   const licensePlate = document.getElementById('vehicleSelection').dataset.plate || '';
+  const customerName= document.getElementById('customerSelection').dataset.name || '';
+   // Zorunlu alan kontrolleri
+  if (!customerName || customerName.trim() === '') {
+    showError('Müşteri seçimi zorunludur!');
+    return;
+  }
+  if (!licensePlate || licensePlate.trim() === '') {
+    showError('Araç plakası zorunludur!');
+    return;
+  }
   
   // Tarih alanlarını al ve formatla
   let orderDate = document.getElementById('siparisTarihi').value || null;
@@ -127,7 +138,7 @@ export async function kaydetMas(customers, products, tigerUsers) {
     }
 
     // Satırları yeniden yükle
-    await fetchSiparisTra(products);
+    await fetchSiparisTra();
 
     // Özet bilgiyi güncelle
     updateSummary();
@@ -276,7 +287,7 @@ export async function loadExistingSales(flowId, customers, products, tigerUsers 
       console.log('loadExistingSales - data:', result.data);
       document.querySelector("button[onclick='kaydetMas()']").textContent = 'Güncelle';
       populateFormWithSalesData(result.data, customers, tigerUsers);
-      await fetchSiparisTra(products);
+      await fetchSiparisTra();
       // Mevcut kayıt yüklendiğinde summary'yi güncelle
       updateSummary();
       document.getElementById('productSelectionCard').style.display = 'block';

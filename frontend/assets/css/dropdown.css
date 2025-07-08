@@ -1,0 +1,159 @@
+/* Dropdown Stil Dosyası - dropdown.css */
+
+/* Dropdown customization - Bootstrap override */
+#customerDropdown,
+#vehicleDropdown,
+#productDropdown,
+.dropdown-menu {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e0e0e0 !important;
+  max-height: 250px !important;
+  min-height: auto !important;
+  height: auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 0 !important;
+  margin-top: 2px !important;
+  position: absolute !important;
+  top: calc(100% + 2px) !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1050 !important;
+  background: white !important;
+  /* Agresif boyut sınırları */
+  max-width: 100% !important;
+  width: 100% !important;
+  bottom: auto !important;
+  transform: none !important;
+  inset: auto !important;
+}
+
+#customerDropdown .dropdown-item,
+#vehicleDropdown .dropdown-item,
+#productDropdown .dropdown-item,
+.dropdown-item {
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  background-color: #fff !important;
+}
+
+#customerDropdown .dropdown-item:hover,
+#vehicleDropdown .dropdown-item:hover,
+#productDropdown .dropdown-item:hover,
+.dropdown-item:hover {
+  background-color: #f8f9fa !important;
+  color: #0d6efd !important;
+  transform: translateX(2px) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+#customerDropdown .dropdown-item:last-child,
+#vehicleDropdown .dropdown-item:last-child,
+#productDropdown .dropdown-item:last-child,
+.dropdown-item:last-child {
+  border-bottom: none !important;
+}
+
+/* Dropdown item içindeki butonlar */
+#customerDropdown .btn-sm,
+#vehicleDropdown .btn-sm,
+#productDropdown .btn-sm,
+.dropdown-item .btn-sm {
+  padding: 0.25rem 0.375rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1.2 !important;
+  height: 30px !important;
+  width: 30px !important;
+  min-width: 30px !important;
+  margin: 0 !important;
+  border: 1px solid #6c757d !important;
+  border-radius: 4px !important;
+  background-color: #fff !important;
+  color: #6c757d !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#customerDropdown .btn-sm:hover,
+#vehicleDropdown .btn-sm:hover,
+#productDropdown .btn-sm:hover,
+.dropdown-item .btn-sm:hover {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+  border-color: #0d6efd !important;
+  transform: scale(1.05) !important;
+}
+
+/* Dropdown scroll bar customization */
+#customerDropdown::-webkit-scrollbar,
+#vehicleDropdown::-webkit-scrollbar,
+#productDropdown::-webkit-scrollbar,
+.dropdown-menu::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+#customerDropdown::-webkit-scrollbar-track,
+#vehicleDropdown::-webkit-scrollbar-track,
+#productDropdown::-webkit-scrollbar-track,
+.dropdown-menu::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+  border-radius: 10px !important;
+}
+
+#customerDropdown::-webkit-scrollbar-thumb,
+#vehicleDropdown::-webkit-scrollbar-thumb,
+#productDropdown::-webkit-scrollbar-thumb,
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: #c1c1c1 !important;
+  border-radius: 10px !important;
+}
+
+#customerDropdown::-webkit-scrollbar-thumb:hover,
+#vehicleDropdown::-webkit-scrollbar-thumb:hover,
+#productDropdown::-webkit-scrollbar-thumb:hover,
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8 !important;
+}
+
+/* Bootstrap dropdown override */
+.dropdown-menu.show {
+  max-height: 250px !important;
+  overflow-y: auto !important;
+}
+
+/* Rehber dropdown positioning fix */
+.position-relative {
+  position: relative !important;
+}
+
+.input-group .form-control {
+  z-index: 1 !important;
+}
+
+/* Dropdown aşağıya açılma garantisi */
+#customerDropdown[style*="display: block"],
+#vehicleDropdown[style*="display: block"],
+#productDropdown[style*="display: block"] {
+  transform: translateY(0) !important;
+  top: calc(100% + 2px) !important;
+  margin-top: 0 !important;
+}

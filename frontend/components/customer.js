@@ -1,7 +1,7 @@
-import { getQueryParam } from './helpers.js';
+import { getQueryParam } from '../services/helpers.js';
 import { showError, showSuccess } from './ui.js';
-import { fetchCustomers } from './api.js';
-import { API_CONFIG } from './config.js';
+import { fetchCustomers } from '../services/api.js';
+import { API_CONFIG } from '../config.js';
 
 // İmza kutucuklarını güncelleme fonksiyonu
 export function updateSignatureBoxes() {
@@ -187,7 +187,13 @@ export async function saveNewCustomer() {
   const telephone = document.getElementById("telefon").value.trim();
   const paymentTypeStr = document.getElementById("odemeTipi").value;
   const email = document.getElementById("eposta").value.trim();
-  const cityId = document.getElementById("city").value;
+  // cityId için artık logicalref değil, city CODE kullanılacak
+  const citySelect = document.getElementById("city");
+  let cityId = "";
+  if (citySelect) {
+    const selectedOption = citySelect.options[citySelect.selectedIndex];
+    cityId = selectedOption && selectedOption.dataset.code ? selectedOption.dataset.code : "";
+  }
   const userId = getQueryParam("userId") || "unknownUser";
 
   // Zorunlu alan kontrolü
@@ -218,7 +224,7 @@ export async function saveNewCustomer() {
     paymentType: paymentTypeKey,
     email: email,
     flowId: flowId,
-    cityId: cityId ? parseInt(cityId) : 0
+    cityId: cityId ? cityId : ""
   };
 
   try {

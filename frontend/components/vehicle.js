@@ -1,6 +1,6 @@
 import { showError } from './ui.js';
-import { fetchVehicles } from './api.js';
-import { API_CONFIG } from './config.js';
+import { fetchVehicles } from '../services/api.js';
+import { API_CONFIG } from '../config.js';
 
 // Araç seçim fonksiyonu
 export function selectVehicle(vehicle) {

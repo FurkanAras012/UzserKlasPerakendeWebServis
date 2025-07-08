@@ -28,665 +28,16 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
     rel="stylesheet"
   />
-  <style>
-    /* CSS bloğu */
-    .logo:hover { transform: scale(1.1); transition: transform 0.3s ease; }
-    
-    /* Logo görünürlük kontrolü - Ekran */
-    @media screen {
-      .screen-only {
-        display: block !important;
-      }
-      
-      .print-only {
-        display: none !important;
-      }
-      
-      /* İmza kutucuklarını ekranda gizle */
-      .signature-boxes {
-        display: none !important;
-      }
-      
-      /* Tarih alanını ekranda gizle */
-      .header-date-field {
-        display: none !important;
-      }
-    }
-    
-    .modern-title { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: #333; transition: color 0.3s ease, transform 0.3s ease; animation: fadeIn 1.2s ease-in-out; }
-    .modern-title:hover { color: #0d6efd; transform: scale(1.05); }
-    .form-check-label.active { background-color: #0d6efd; color: white; padding: 0.2rem 0.5rem; border-radius: 0.25rem; }
-    .toggle-option { cursor: pointer; padding: 0.5rem 1rem; border: 1px solid #0d6efd; border-radius: 0.25rem; margin-right: 0.5rem; transition: background-color 0.3s ease, color 0.3s ease; font-weight: bold; border: none; }
-    .toggle-option.active { background-color: #0d6efd; color: white; }
-    body { font-family: 'Montserrat', sans-serif;  background-size: 150px 150px; animation: fadeIn 1s ease-in-out; }
-    .container-fluid { max-width: none !important; }
-    header { background: linear-gradient(to right, #a1c4fd, #c2e9fb); box-shadow: 0 4px 6px rgba(0,0,0,0.1); animation: slideDown 0.8s ease-in-out; }
-    .card { border: none; border-radius: 15px; overflow: visible; transition: box-shadow 0.3s ease; background: #fff; }
-    .card:hover { box-shadow: 0 6px 10px rgba(0,0,0,0.1); }
-    .card-header span { font-weight: 1000; font-size: 1.2rem; color: #333; }
-    .form-control, .form-select { 
-      border-radius: 10px; 
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      border: 2px solid #dee2e6 !important;
-    }
-    .form-control:focus, .form-select:focus { 
-      box-shadow: 0 0 8px rgba(161,196,253,0.5); 
-      transform: scale(1.02);
-      border-color: #0d6efd !important;
-    }
-    footer { background: linear-gradient(to right, #a1c4fd, #c2e9fb); animation: fadeIn 1.5s ease-in-out; position: fixed; bottom: 0; width: 100%; }
-    
-
-
-    /* Dropdown customization - Bootstrap override */
-    #customerDropdown,
-    #vehicleDropdown,
-    #productDropdown,
-    .dropdown-menu {
-      border-radius: 8px !important;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-      border: 1px solid #e0e0e0 !important;
-      max-height: 250px !important;
-      min-height: auto !important;
-      height: auto !important;
-      overflow-y: auto !important;
-      overflow-x: hidden !important;
-      padding: 0 !important;
-      margin-top: 2px !important;
-      position: absolute !important;
-      top: calc(100% + 2px) !important;
-      left: 0 !important;
-      right: 0 !important;
-      z-index: 1050 !important;
-      background: white !important;
-      /* Agresif boyut sınırları */
-      max-width: 100% !important;
-      width: 100% !important;
-      bottom: auto !important;
-      transform: none !important;
-      inset: auto !important;
-    }
-    
-    #customerDropdown .dropdown-item,
-    #vehicleDropdown .dropdown-item,
-    #productDropdown .dropdown-item,
-    .dropdown-item {
-      padding: 0.75rem 1rem !important;
-      font-size: 1rem !important;
-      border-bottom: 1px solid #f0f0f0 !important;
-      line-height: 1.4 !important;
-      margin: 0 !important;
-      min-height: 48px !important;
-      max-height: 48px !important;
-      height: 48px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      white-space: nowrap !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-      font-weight: 500 !important;
-      color: #333 !important;
-      cursor: pointer !important;
-      transition: all 0.2s ease !important;
-      background-color: #fff !important;
-    }
-    
-    #customerDropdown .dropdown-item:hover,
-    #vehicleDropdown .dropdown-item:hover,
-    #productDropdown .dropdown-item:hover,
-    .dropdown-item:hover {
-      background-color: #f8f9fa !important;
-      color: #0d6efd !important;
-      transform: translateX(2px) !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-    }
-    
-    #customerDropdown .dropdown-item:last-child,
-    #vehicleDropdown .dropdown-item:last-child,
-    #productDropdown .dropdown-item:last-child,
-    .dropdown-item:last-child {
-      border-bottom: none !important;
-    }
-    
-    /* Dropdown item içindeki butonlar */
-    #customerDropdown .btn-sm,
-    #vehicleDropdown .btn-sm,
-    #productDropdown .btn-sm,
-    .dropdown-item .btn-sm {
-      padding: 0.25rem 0.375rem !important;
-      font-size: 0.75rem !important;
-      line-height: 1.2 !important;
-      height: 30px !important;
-      width: 30px !important;
-      min-width: 30px !important;
-      margin: 0 !important;
-      border: 1px solid #6c757d !important;
-      border-radius: 4px !important;
-      background-color: #fff !important;
-      color: #6c757d !important;
-      transition: all 0.2s ease !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
-    
-    #customerDropdown .btn-sm:hover,
-    #vehicleDropdown .btn-sm:hover,
-    #productDropdown .btn-sm:hover,
-    .dropdown-item .btn-sm:hover {
-      background-color: #0d6efd !important;
-      color: #fff !important;
-      border-color: #0d6efd !important;
-      transform: scale(1.05) !important;
-    }
-    
-    /* Dropdown scroll bar customization */
-    #customerDropdown::-webkit-scrollbar,
-    #vehicleDropdown::-webkit-scrollbar,
-    #productDropdown::-webkit-scrollbar,
-    .dropdown-menu::-webkit-scrollbar {
-      width: 8px !important;
-    }
-    
-    #customerDropdown::-webkit-scrollbar-track,
-    #vehicleDropdown::-webkit-scrollbar-track,
-    #productDropdown::-webkit-scrollbar-track,
-    .dropdown-menu::-webkit-scrollbar-track {
-      background: #f1f1f1 !important;
-      border-radius: 10px !important;
-    }
-    
-    #customerDropdown::-webkit-scrollbar-thumb,
-    #vehicleDropdown::-webkit-scrollbar-thumb,
-    #productDropdown::-webkit-scrollbar-thumb,
-    .dropdown-menu::-webkit-scrollbar-thumb {
-      background: #c1c1c1 !important;
-      border-radius: 10px !important;
-    }
-    
-    #customerDropdown::-webkit-scrollbar-thumb:hover,
-    #vehicleDropdown::-webkit-scrollbar-thumb:hover,
-    #productDropdown::-webkit-scrollbar-thumb:hover,
-    .dropdown-menu::-webkit-scrollbar-thumb:hover {
-      background: #a8a8a8 !important;
-    }
-    
-    /* Bootstrap dropdown override */
-    .dropdown-menu.show {
-      max-height: 250px !important;
-      overflow-y: auto !important;
-    }
-    
-    /* Loading Overlay */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(5px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.3s ease;
-    }
-    
-    .loading-overlay.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-    
-    .loading-content {
-      text-align: center;
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      animation: bounceIn 0.6s ease;
-    }
-    
-    @keyframes bounceIn {
-      0% { transform: scale(0.3); opacity: 0; }
-      50% { transform: scale(1.05); }
-      70% { transform: scale(0.9); }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    
-    /* Rehber dropdown positioning fix */
-    .position-relative {
-      position: relative !important;
-    }
-
-    
-    
-    .input-group .form-control {
-      z-index: 1 !important;
-    }
-    
-    /* Dropdown aşağıya açılma garantisi */
-    #customerDropdown[style*="display: block"],
-    #vehicleDropdown[style*="display: block"],
-    #productDropdown[style*="display: block"] {
-      transform: translateY(0) !important;
-      top: calc(100% + 2px) !important;
-      margin-top: 0 !important;
-    }
-    
-    /* Print Styles */
-    @media print {
-      /* Logo görünürlük kontrolü */
-      .screen-only {
-        display: none !important;
-      }
-      
-      .print-only {
-        display: block !important;
-      }
-      
-      /* Tarih alanını PDF'de göster */
-      .header-date-field {
-        display: flex !important;
-      }
-      
-      /* Gizlenecek elemanlar */
-      .no-print,
-      .btn:not(.print-keep),
-      .modal,
-      .loading-overlay,
-      #customerDropdown,
-      #vehicleDropdown,
-      #productDropdown {
-        display: none !important;
-      }
-      
-      /* Ürün seçim inputlarını gizle - Sadece tabloyu ve summary'yi göster */
-      #productSelectionCard .card-body .row:not(.table-responsive):not(#summarySection) {
-        display: none !important;
-      }
-      
-      /* Tablo satırını göster */
-      #productSelectionCard .row.table-responsive {
-        display: flex !important;
-      }
-      
-      /* Summary alanını kesinlikle göster - Tüm olası durumları kapsayalım */
-      #summarySection,
-      #productSelectionCard #summarySection,
-      .card-body #summarySection,
-      #summarySection.row {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
-        z-index: 1 !important;
-      }
-      
-      #summarySection .col-md-4,
-      #summarySection .card,
-      #summarySection .card-header,
-      #summarySection .card-body,
-      #summarySection .d-flex {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-      }
-      
-      #summarySection .d-flex {
-        display: flex !important;
-      }
-      
-      /* Summary alanı PDF düzenlemesi */
-      #summarySection {
-        margin-top: 1rem !important;
-        page-break-inside: avoid !important;
-        float: right !important;
-        clear: both !important;
-        width: 100% !important;
-      }
-      
-      #summarySection .col-md-4 {
-        width: 250px !important;
-        float: right !important;
-        margin-left: auto !important;
-        margin-right: 0 !important;
-      }
-      
-      /* Summary alanı PDF düzenlemesi */
-      #summarySection .card {
-        border: 1px solid #dee2e6 !important;
-        border-radius: 5px !important;
-        box-shadow: none !important;
-        background: white !important;
-        max-width: 250px !important;
-        margin-left: auto !important;
-        margin-right: 0 !important;
-      }
-      
-      #summarySection .card-header {
-        background: #f8f9fa !important;
-        color: black !important;
-        border-bottom: 1px solid #dee2e6 !important;
-        padding: 0.3rem !important;
-        text-align: center !important;
-        font-weight: bold !important;
-        font-size: 10px !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      
-      #summarySection .card-body {
-        padding: 0.5rem !important;
-        font-size: 9px !important;
-        line-height: 1.3 !important;
-      }
-      
-      #summarySection .d-flex {
-        margin-bottom: 0.2rem !important;
-      }
-      
-      #summarySection .d-flex:last-child {
-        margin-bottom: 0 !important;
-      }
-      
-      /* Tüm tutarları aynı boyutta yap */
-      #summarySection .fw-bold,
-      #summarySection .text-primary,
-      #summarySection .text-danger,
-      #summarySection span {
-        font-weight: normal !important;
-        font-size: 9px !important;
-        color: black !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      
-      /* Sadece başlık metinlerini kalın yap */
-      #summarySection .d-flex span:first-child {
-        font-weight: bold !important;
-      }
-      
-      #summarySection .border-top {
-        border-top: 1px solid #dee2e6 !important;
-        padding-top: 0.2rem !important;
-      }
-      
-      #summarySection hr {
-        margin: 0.3rem 0 !important;
-        border-top: 1px solid #dee2e6 !important;
-      }
-      
-      /* Ürün seçim input alanlarını gizle */
-      #productSelectionCard .form-label,
-      #productSelectionCard .form-control:not(#productTable *),
-      #productSelectionCard .form-select,
-      #productSelectionCard .btn:not(.print-keep),
-      #productSelectionCard .input-group,
-      #productSelectionCard .position-relative:not(.table-responsive) {
-        display: none !important;
-      }
-      
-      /* Sayfa ayarları */
-      body {
-        background: white !important;
-        color: black !important;
-        font-size: 12px !important;
-        line-height: 1.4 !important;
-      }
-      
-      /* Header düzenlemesi - Üst bilgileri yan yana */
-      header {
-        background: #f8f9fa !important;
-        color: black !important;
-        padding: 1rem 0 !important;
-        margin-bottom: 1rem !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        page-break-after: avoid !important;
-      }
-      
-      header .container-fluid {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        flex-wrap: nowrap !important;
-      }
-      
-      header .d-flex.align-items-center.gap-3 {
-        flex-direction: column !important;
-        gap: 0.5rem !important;
-        align-items: flex-end !important;
-        margin-left: auto !important;
-      }
-      
-      header .d-flex.flex-column {
-        flex-direction: column !important;
-        gap: 0.3rem !important;
-        align-items: flex-end !important;
-        margin-left: auto !important;
-      }
-      
-      header .input-group {
-        margin-bottom: 0 !important;
-        width: auto !important;
-        min-width: 180px !important;
-        max-width: 200px !important;
-        display: flex !important;
-        flex-direction: row !important;
-      }
-      
-      header .input-group-text {
-        white-space: nowrap !important;
-        min-width: 70px !important;
-        width: 70px !important;
-        text-align: left !important;
-        background: #e9ecef !important;
-        color: black !important;
-        font-size: 10px !important;
-        padding: 0.2rem 0.3rem !important;
-      }
-      
-      header .form-control {
-        font-size: 10px !important;
-        padding: 0.2rem 0.3rem !important;
-        min-width: 110px !important;
-        width: 110px !important;
-      }
-      
-      .modern-title {
-        font-size: 1.5rem !important;
-        color: black !important;
-        text-align: center !important;
-        flex: 1 !important;
-        margin: 0 !important;
-      }
-      
-      /* PDF'de başlığı değiştir */
-      .modern-title::after {
-        content: "Sipariş Formu" !important;
-      }
-      
-      .modern-title {
-        font-size: 0 !important;
-        line-height: 0 !important;
-      }
-      
-      .modern-title::after {
-        font-size: 1.5rem !important;
-        line-height: 1.2 !important;
-        display: block !important;
-      }
-      
-      /* Card düzenlemesi */
-      .card {
-        box-shadow: none !important;
-        border: 1px solid #dee2e6 !important;
-        page-break-inside: avoid !important;
-        margin-bottom: 1rem !important;
-      }
-      
-      .card-header {
-        background: #f8f9fa !important;
-        color: black !important;
-        border-bottom: 1px solid #dee2e6 !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      
-      /* Sipariş üst bilgisi düzenlemesi */
-      #orderInfoBody .row {
-        display: flex !important;
-        flex-wrap: wrap !important;
-      }
-      
-      #orderInfoBody .col-md-6 {
-        width: 50% !important;
-        flex: 0 0 50% !important;
-      }
-      
-      #orderInfoBody .col-md-2 {
-        width: 16.666% !important;
-        flex: 0 0 16.666% !important;
-      }
-      
-      #orderInfoBody .col-md-3 {
-        width: 25% !important;
-        flex: 0 0 25% !important;
-      }
-      
-      /* Tablo düzenlemesi */
-      .table {
-        font-size: 11px !important;
-        border-collapse: collapse !important;
-      }
-      
-      .table thead th {
-        background: #e9ecef !important;
-        color: black !important;
-        border: 1px solid #dee2e6 !important;
-        padding: 0.5rem !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      
-      .table tbody td {
-        border: 1px solid #dee2e6 !important;
-        padding: 0.4rem !important;
-      }
-      
-      /* Form elementleri */
-      .form-control,
-      .form-select {
-        border: 1px solid #dee2e6 !important;
-        background: white !important;
-        font-size: 11px !important;
-        padding: 0.3rem !important;
-      }
-      
-      /* Kaydet butonunu gizle */
-      #orderInfoBody .mt-4 {
-        display: none !important;
-      }
-      
-      /* İmza kutucukları - Sadece PDF'de göster */
-      .signature-boxes {
-        position: fixed !important;
-        bottom: 1cm !important;
-        left: 1cm !important;
-        right: 1cm !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        page-break-inside: avoid !important;
-        margin-top: 2rem !important;
-      }
-      
-      .signature-box {
-        width: 45% !important;
-        border: 1px solid #dee2e6 !important;
-        padding: 1rem !important;
-        text-align: center !important;
-        background: white !important;
-        min-height: 80px !important;
-      }
-      
-      .signature-title {
-        font-weight: bold !important;
-        font-size: 11px !important;
-        margin-bottom: 0.5rem !important;
-        color: black !important;
-      }
-      
-      .signature-line {
-        border-top: 1px solid black !important;
-        margin-top: 2rem !important;
-        padding-top: 0.3rem !important;
-        font-size: 9px !important;
-        color: black !important;
-      }
-      
-      /* Sayfa ayarları */
-      @page {
-        margin: 1cm;
-        size: A4;
-        /* Tarayıcının otomatik header/footer bilgilerini kaldır */
-        margin-top: 1cm;
-        margin-bottom: 1cm;
-        /* Header ve footer'ı tamamen kaldır */
-        @top-left { content: ""; }
-        @top-center { content: ""; }
-        @top-right { content: ""; }
-        @bottom-left { content: ""; }
-        @bottom-center { content: ""; }
-        @bottom-right { content: ""; }
-      }
-      
-      /* Tarayıcının varsayılan header/footer'ını kaldır */
-      body {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      
-      /* Print başlık ve URL'yi gizle */
-      @media print {
-        @page {
-          margin: 1cm;
-          size: A4;
-        }
-        
-        /* Tarayıcının header/footer'ını gizlemek için */
-        html {
-          margin: 0 !important;
-          padding: 0 !important;
-        }
-        
-        body {
-          margin: 0 !important;
-          padding: 0 !important;
-          -webkit-print-color-adjust: exact !important;
-          print-color-adjust: exact !important;
-        }
-      }
-      
-      /* Sayfa sonları */
-      .card {
-        page-break-inside: avoid;
-      }
-      
-      /* İşlemler sütunu gizle */
-      .table th:last-child,
-      .table td:last-child {
-        display: none !important;
-      }
-    }
-  </style>
+  
+  <!-- Custom CSS Files - Load order is important -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/loading.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+  <link rel="stylesheet" href="assets/css/dropdown.css">
+  <link rel="stylesheet" href="assets/css/modern-theme.css">
+  <link rel="stylesheet" href="assets/css/floating-forms.css">
 </head>
-<body class="bg-light">
+<body class="modern-theme">
   <!-- Loading Overlay -->
   <div id="loadingOverlay" class="loading-overlay">
     <div class="loading-content">
@@ -699,31 +50,32 @@
   </div>
 
   <!-- Üst Bilgi -->
-  <header class="bg-white shadow-sm py-3">
+  <header class="modern-card shadow-sm py-3 mb-4">
     <div class="container-fluid d-flex flex-wrap align-items-center justify-content-between px-4">
       <div class="d-flex align-items-center">
-        <!-- Ekran için beyaz logo -->
-        <img src="img/klaslogo.png" alt="Logo" class="me-3 logo screen-only" style="height:80px;" />
-        <!-- PDF için siyah arka planlı logo -->
-        <img src="img/logo.png" alt="Logo" class="me-3 logo print-only" style="height:70px;" />
+        <!-- Logo dosyaları henüz assets/img klasörüne taşınmamış -->
+        <img src="assets/img/klaslogo.png" alt="Logo" class="me-3 logo" style="height:80px;" /> 
+      
+        
       </div>
       <h3 class="modern-title fw-bold mb-0">Klas Perakende Satış</h3>
+      <h3 class="print-header-title print-only">SİPARİŞ FORMU</h3>
       <div class="d-flex align-items-center gap-3">
-        <button class="btn btn-outline-primary no-print" onclick="exportToPDF()">
-          <i class="bi bi-file-earmark-pdf"></i> PDF Yazdır
+        <button class="btn btn-primary no-print" onclick="exportToPDF()">
+          <i class="bi bi-file-earmark-pdf me-2"></i> PDF Yazdır
         </button>
-        <div class="d-flex flex-column" style="max-width:400px;">
-          <div class="input-group mb-2">
-            <span class="input-group-text bg-primary text-white border-0" style="width:150px;">Sipariş No</span>
-            <input type="text" id="orderCodeHeader" class="form-control" placeholder="NRP202500001" readonly style="width:250px;" />
+      <div class="d-flex flex-column" style="max-width:400px;">
+          <div class="floating-label-group mb-2 screen-only">
+            <input type="text" id="orderCodeHeader" class="floating-input" placeholder="NRP202500001" readonly />
+            <label for="orderCodeHeader" class="floating-label">Sipariş No</label>
           </div>
-          <div class="input-group mb-2 header-date-field">
-            <span class="input-group-text bg-primary text-white border-0" style="width:150px;">Tarih</span>
-            <input type="text" id="headerTarih" class="form-control" readonly style="width:250px;" />
+          <div class="floating-label-group mb-2 header-date-field screen-only">
+            <input type="text" id="headerTarih" class="floating-input" readonly />
+            <label for="headerTarih" class="floating-label">Tarih</label>
           </div>
-          <div class="input-group">
-            <span class="input-group-text bg-primary text-white border-0" style="width:150px;">Plasiyer</span>
-            <input type="text" id="plasiyerInput" class="form-control" placeholder="Plasiyer giriniz" readonly style="width:250px;" />
+          <div class="floating-label-group screen-only">
+            <input type="text" id="plasiyerInput" class="floating-input" placeholder="Plasiyer giriniz" readonly />
+            <label for="plasiyerInput" class="floating-label">Plasiyer</label>
           </div>
         </div>
       </div>
@@ -733,141 +85,216 @@
   <!-- Gövde -->
   <main class="container-fluid my-5 px-4">
     <!-- Sipariş Üst Bilgisi -->
-    <div class="card shadow-sm mb-4">
-      <div class="card-header bg-light d-flex justify-content-between align-items-center">
-        <span>Sipariş Bilgisi</span>
-        <button class="btn btn-sm btn-primary" id="toggleOrderInfo"><i class="bi bi-dash-lg" id="toggleOrderInfoIcon"></i></button>
+    <div class="modern-card shadow-sm mb-4">
+      <div class="modern-card-header d-flex justify-content-between align-items-center">
+        <span class="fw-semibold">Sipariş Bilgisi</span>
+        <button class="btn btn-outline-secondary btn-sm" id="toggleOrderInfo"><i class="bi bi-dash-lg" id="toggleOrderInfoIcon"></i></button>
       </div>
-      <div class="card-body" id="orderInfoBody">
+      <div class="modern-card-body" id="orderInfoBody">
+        <!-- Sadece printte görünsün -->
+        <div class="row gx-4 gy-2 print-only" style="margin-bottom:0.5rem;">
+          <div class="col-md-4">
+            <div class="floating-label-group w-100">
+              <input type="text" id="orderCodeHeaderPrint" class="floating-input" placeholder="NRP202500001" readonly />
+              <label for="orderCodeHeaderPrint" class="floating-label">Sipariş No</label>
+            </div>
+          </div>
+          <div class="col-md-4 d-none">
+            <div class="floating-label-group w-100">
+              <input type="text" id="headerTarihPrint" class="floating-input" readonly />
+              <label for="headerTarihPrint" class="floating-label">Tarih</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="floating-label-group w-100">
+              <input type="text" id="plasiyerInputPrint" class="floating-input" placeholder="Plasiyer giriniz" readonly />
+              <label for="plasiyerInputPrint" class="floating-label">Plasiyer</label>
+            </div>
+          </div>
+        </div>
         <div class="row gx-5 gy-4">
           <div class="col-md-6">
-            <label for="customerSelection" class="form-label">Müşteri Seçimi</label>
-            <div class="input-group position-relative">
-              <input type="text" id="customerSelection" class="form-control" placeholder="Müşteri adı veya kodu..." autocomplete="off" />
-              <button class="btn btn-outline-secondary" onclick="openNewCustomerModal()"><i class="bi bi-plus-lg"></i></button>
+            <div class="floating-label-group">
+              <input type="text" id="customerSelection" class="floating-input" placeholder="Müşteri adı veya kodu..." autocomplete="off" />
+              <label for="customerSelection" class="floating-label">
+                <i class="bi bi-person me-1"></i>Müşteri Seçimi
+              </label>
+              <button class="floating-btn" onclick="openNewCustomerModal()"><i class="bi bi-plus-lg"></i></button>
               <ul class="dropdown-menu position-absolute w-100" id="customerDropdown" style="max-height:250px!important;overflow-y:auto!important;z-index:1050!important;padding:0!important;top:100%!important;left:0!important;right:0!important;"></ul>
             </div>
           </div>
           <div class="col-md-6">
-            <label for="vehicleSelection" class="form-label">Araç Seçimi</label>
-            <div class="input-group position-relative">
-              <input type="text" id="vehicleSelection" class="form-control" placeholder="Plaka veya şasi numarası..." autocomplete="off" />
-              <button class="btn btn-outline-secondary" onclick="openNewVehicleModal()"><i class="bi bi-plus-lg"></i></button>
+            <div class="floating-label-group">
+              <input type="text" id="vehicleSelection" class="floating-input" placeholder="Plaka veya şasi numarası..." autocomplete="off" />
+              <label for="vehicleSelection" class="floating-label">
+                <i class="bi bi-car-front me-1"></i>Araç Seçimi
+              </label>
+              <button class="floating-btn" onclick="openNewVehicleModal()"><i class="bi bi-plus-lg"></i></button>
               <ul class="dropdown-menu position-absolute w-100" id="vehicleDropdown" style="max-height:250px!important;overflow-y:auto!important;z-index:1050!important;padding:0!important;top:100%!important;left:0!important;right:0!important;"></ul>
             </div>
           </div>
         </div>
         <div class="row gx-4 gy-4 mt-3">
           <div class="col-md-2">
-            <label for="siparisTarihi" class="form-label">Sipariş Tarihi</label>
-            <input type="text" id="siparisTarihi" class="form-control" readonly />
+            <div class="floating-label-group">
+              <input type="text" id="siparisTarihi" class="floating-input" readonly />
+              <label for="siparisTarihi" class="floating-label">
+                <i class="bi bi-calendar me-1"></i>Sipariş Tarihi
+              </label>
+            </div>
           </div>
           <div class="col-md-2">
-            <label for="teslimTarihi" class="form-label">Teslim Tarihi</label>
-            <input type="text" id="teslimTarihi" class="form-control" readonly />
+            <div class="floating-label-group">
+              <input type="text" id="teslimTarihi" class="floating-input" readonly />
+              <label for="teslimTarihi" class="floating-label">
+                <i class="bi bi-calendar-check me-1"></i>Teslim Tarihi
+              </label>
+            </div>
           </div>
           <div class="col-md-3">
-            <label for="aciklama1" class="form-label">Açıklama 1</label>
-            <input type="text" id="aciklama1" class="form-control" placeholder="Açıklama giriniz" />
+            <div class="floating-label-group">
+              <input type="text" id="aciklama1" class="floating-input" placeholder="Açıklama giriniz" />
+              <label for="aciklama1" class="floating-label">
+                <i class="bi bi-chat-text me-1"></i>Açıklama 1
+              </label>
+            </div>
           </div>
           <div class="col-md-3">
-            <label for="aciklama2" class="form-label">Açıklama 2</label>
-            <input type="text" id="aciklama2" class="form-control" placeholder="Açıklama giriniz" />
+            <div class="floating-label-group">
+              <input type="text" id="aciklama2" class="floating-input" placeholder="Açıklama giriniz" />
+              <label for="aciklama2" class="floating-label">
+                <i class="bi bi-chat-text me-1"></i>Açıklama 2
+              </label>
+            </div>
           </div>
           <div class="col-md-2">
-            <label for="iskontoOrani" class="form-label">İskonto (%)</label>
-            <input type="number" id="iskontoOrani" class="form-control" min="0" max="100" step="0.01" value="0" />
-            <input type="hidden" id="masId" />
+            <div class="floating-label-group">
+              <input type="number" id="iskontoOrani" class="floating-input" min="0" max="100" step="0.01" value="0" />
+              <label for="iskontoOrani" class="floating-label">
+                <i class="bi bi-percent me-1"></i>İskonto (%)
+              </label>
+              <input type="hidden" id="masId" />
+            </div>
           </div>
         </div>
         <div class="mt-4">
-          <button class="btn btn-success" onclick="kaydetMas()">Sipariş Üst Bilgiyi Kaydet</button>
+          <button class="btn btn-success" onclick="kaydetMas()">
+            <i class="bi bi-save me-2"></i>Sipariş Üst Bilgiyi Kaydet
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Ürün Seçimi Kartı -->
-    <div class="card shadow-sm mb-4" id="productSelectionCard">
-      <div class="card-header bg-light d-flex justify-content-between align-items-center">
-        <span>Ürün Bilgileri</span>
-        <button class="btn btn-success d-none" id="proformaButton" onclick="generateProforma()">Proforma Oluştur</button>
-      </div>
-      <div class="card-body">
-        <div class="row gx-4 gy-4">
-          <div class="col-md-9">
-            <label for="productSelection" class="form-label">Ürün Seçimi</label>
-            <div class="position-relative">
-              <input type="text" id="productSelection" class="form-control" placeholder="Ürün adı veya kodu..." autocomplete="off" />
-              <ul class="dropdown-menu position-absolute w-100" id="productDropdown" style="max-height:250px!important;overflow-y:auto!important;z-index:1050!important;padding:0!important;top:100%!important;left:0!important;right:0!important;"></ul>
+
+    <!-- Ürün Bilgileri ve Sipariş Özeti birlikte grup -->
+    <div id="productPrintGroup">
+      <div class="modern-card shadow-sm mb-4" id="productSelectionCard">
+        <div class="modern-card-header d-flex justify-content-between align-items-center">
+          <span class="fw-semibold">Ürün Bilgileri</span>
+          <button class="btn btn-success d-none" id="proformaButton" onclick="generateProforma()">
+            <i class="bi bi-file-text me-2"></i>Proforma Oluştur
+          </button>
+        </div>
+        <div class="modern-card-body">
+          <div class="screen-only">
+            <div class="row gx-4 gy-4">
+              <div class="col-md-9">
+                <div class="floating-label-group">
+                  <input type="text" id="productSelection" class="floating-input" placeholder="Ürün adı veya kodu..." autocomplete="off" />
+                  <label for="productSelection" class="floating-label">
+                    <i class="bi bi-box me-1"></i>Ürün Seçimi
+                  </label>
+                  <ul class="dropdown-menu position-absolute w-100" id="productDropdown" style="max-height:250px!important;overflow-y:auto!important;z-index:1050!important;padding:0!important;top:100%!important;left:0!important;right:0!important;"></ul>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="floating-label-group">
+                  <input type="number" id="productQuantity" class="floating-input" min="1" />
+                  <label for="productQuantity" class="floating-label">
+                    <i class="bi bi-123 me-1"></i>Miktar
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row gx-4 gy-4">
+              <div class="col-md-3">
+                <div class="floating-label-group">
+                  <input type="number" id="productPrice" class="floating-input" step="0.01" min="0" />
+                  <label for="productPrice" class="floating-label">
+                    <i class="bi bi-currency-exchange me-1"></i>Fiyat
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="floating-label-group">
+                  <input type="number" id="productDiscount" class="floating-input" step="0.01" min="0" max="100" value="0" />
+                  <label for="productDiscount" class="floating-label">
+                    <i class="bi bi-percent me-1"></i>İskonto (%)
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="floating-label-group">
+                  <select id="currencyType" class="floating-select" disabled>
+                    <option value="TRY" selected>TRY</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                  </select>
+                  <label for="currencyType" class="floating-label">
+                    <i class="bi bi-currency-dollar me-1"></i>Döviz Tipi
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <button class="btn btn-primary w-100" onclick="addProduct()">
+                  <i class="bi bi-plus-circle me-2"></i>Ekle
+                </button>
+              </div>
             </div>
           </div>
-          <div class="col-md-3">
-            <label for="productQuantity" class="form-label">Miktar</label>
-            <input type="number" id="productQuantity" class="form-control" min="1" />
+          <div class="row mt-4 table-responsive">
+            <div class="col-12">
+              <table class="modern-table" id="productTable">
+                <thead class="modern-table-header">
+                  <tr>
+                    <th>#</th><th>Stok Kodu</th><th>Stok Adı</th><th>Fiyat</th><th>Döviz</th><th>Miktar</th><th>İskonto</th><th>İşlem</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
           </div>
-        </div>
-        <div class="row gx-4 gy-4">
-          <div class="col-md-3">
-            <label for="productPrice" class="form-label">Fiyat</label>
-            <input type="number" id="productPrice" class="form-control" step="0.01" min="0" />
-          </div>
-          <div class="col-md-3">
-            <label for="productDiscount" class="form-label">İskonto (%)</label>
-            <input type="number" id="productDiscount" class="form-control" step="0.01" min="0" max="100" value="0" />
-          </div>
-          <div class="col-md-3">
-            <label for="currencyType" class="form-label">Döviz Tipi</label>
-            <select id="currencyType" class="form-select" disabled>
-              <option value="TRY" selected>TRY</option>
-              <option value="USD">USD</option>
-              <option value="EUR">EUR</option>
-            </select>
-          </div>
-          <div class="col-md-3 d-flex align-items-end">
-            <button class="btn btn-primary w-100" onclick="addProduct()">Ekle</button>
-          </div>
-        </div>
-        <div class="row mt-4 table-responsive">
-          <div class="col-12">
-            <table class="table table-striped" id="productTable">
-              <thead class="table-primary">
-                <tr>
-                  <th>#</th><th>Kod</th><th>Ad</th><th>Fiyat</th><th>Döviz</th><th>Miktar</th><th>İskonto</th><th>İşlem</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-        
-        <!-- Summary Alanı -->
-        <div class="row mt-3" id="summarySection" style="display: none;">
-          <div class="col-md-4 ms-auto">
-            <div class="card border-primary shadow-sm">
-              <div class="card-header bg-primary text-white text-center py-2">
-                <h6 class="mb-0">Sipariş Özeti</h6>
-              </div>
-              <div class="card-body p-3">
-                <div class="d-flex justify-content-between mb-2">
-                  <span>Ara Toplam:</span>
-                  <span id="subTotal" class="fw-bold">0.00 TRY</span>
+          <!-- Summary Alanı -->
+          <div class="row mt-3" id="summarySection" style="display: none;">
+            <div class="col-md-4 ms-auto">
+              <div class="modern-card border-primary shadow-sm">
+                <div class="modern-card-header bg-primary text-white text-center py-2">
+                  <h6 class="mb-0">
+                    <i class="bi bi-calculator me-2"></i>Sipariş Özeti
+                  </h6>
                 </div>
-                <div class="d-flex justify-content-between mb-2">
-                  <span>İskonto Tutarı:</span>
-                  <span id="discountAmount" class="fw-bold text-danger">0.00 TRY</span>
-                </div>
-                <div class="d-flex justify-content-between mb-2 border-top pt-2">
-                  <span><strong>Genel Toplam:</strong></span>
-                  <span id="grandTotal" class="fw-bold text-primary fs-5">0.00 TRY</span>
-                </div>
-                <hr class="my-2">
-                <div class="d-flex justify-content-between mb-1">
-                  <span>Toplam Kalem:</span>
-                  <span id="totalItems" class="fw-bold">0</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <span>Toplam Miktar:</span>
-                  <span id="totalQuantity" class="fw-bold">0</span>
+                <div class="modern-card-body p-3">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Ara Toplam:</span>
+                    <span id="subTotal" class="fw-bold">0.00 TRY</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>İskonto Tutarı:</span>
+                    <span id="discountAmount" class="fw-bold text-danger">0.00 TRY</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2 border-top pt-2">
+                    <span><strong>Genel Toplam:</strong></span>
+                    <span id="grandTotal" class="fw-bold text-primary fs-5">0.00 TRY</span>
+                  </div>
+                  <hr class="my-2">
+                  <div class="d-flex justify-content-between mb-1">
+                    <span>Toplam Kalem:</span>
+                    <span id="totalItems" class="fw-bold">0</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <span>Toplam Miktar:</span>
+                    <span id="totalQuantity" class="fw-bold">0</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -877,11 +304,13 @@
     </div>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-primary d-none" id="siparisiOlusturButton" onclick="createOrder()">Siparişi Oluştur</button>
+      <button class="btn btn-primary d-none" id="siparisiOlusturButton" onclick="createOrder()">
+        <i class="bi bi-check-circle me-2"></i>Siparişi Oluştur
+      </button>
     </div>
-    
-    <!-- İmza Kutucukları (Sadece PDF'de görünür) -->
-    <div class="signature-boxes no-print">
+
+    <!-- İmza Kutucukları (Sadece PDF'de görünür) summary'nin hemen altında -->
+    <div class="signature-boxes print-only" style="margin-top:1.5cm;">
       <div class="signature-box">
         <div class="signature-title">MÜŞTERİ</div>
         <div style="margin-top: 1rem;">
@@ -902,70 +331,317 @@
   <!-- Modal: Yeni Müşteri -->
   <div class="modal fade" id="newCustomerModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header"><h5 class="modal-title">Yeni Müşteri Ekle</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-        <div class="modal-body">
+      <div class="modal-content modern-card">
+        <div class="modal-header modern-card-header">
+          <h5 class="modal-title">
+            <i class="bi bi-person-plus me-2"></i>Yeni Müşteri Ekle
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body modern-card-body">
           <div class="row g-3">
-            <div class="col-md-6"><label class="form-label">Cari İsim *</label><input type="text" id="newCustomerName" class="form-control" /></div>
-            <div class="col-md-6"><label class="form-label">Müşteri Kodu</label><input type="text" id="newCustomerCode" class="form-control" placeholder="Otomatik Üretilecektir" readonly /></div>
-            <div class="col-md-6"><label class="form-label">VKN/TC *</label><input type="text" id="vknTc" class="form-control" /></div>
-            <div class="col-md-6"><label class="form-label">Vergi Dairesi</label><input type="text" id="vergiDairesi" class="form-control" /></div>
-            <div class="col-12"><label class="form-label">Adres</label><textarea id="adres" class="form-control" rows="2"></textarea></div>
-            <div class="col-md-6"><label class="form-label">Telefon</label><input type="tel" id="telefon" class="form-control" /></div>
-            <div class="col-md-6"><label class="form-label">Şehir *</label><select id="city" class="form-select"><option value="">Şehir seçiniz...</option></select></div>
-            <div class="col-md-6"><label class="form-label">Ödeme Tipi</label><select id="odemeTipi" class="form-select"><option value="">Seçiniz...</option><option value="Nakit">Nakit</option><option value="Kredi Kartı">Kredi Kartı</option></select></div>
-            <div class="col-md-6"><label class="form-label">E-posta</label><input type="email" id="eposta" class="form-control" /></div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newCustomerName" class="floating-input" />
+                <label for="newCustomerName" class="floating-label">
+                  <i class="bi bi-person me-1"></i>Cari İsim *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newCustomerCode" class="floating-input" placeholder="Otomatik Üretilecektir" readonly />
+                <label for="newCustomerCode" class="floating-label">
+                  <i class="bi bi-hash me-1"></i>Müşteri Kodu
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="vknTc" class="floating-input" />
+                <label for="vknTc" class="floating-label">
+                  <i class="bi bi-card-text me-1"></i>VKN/TC *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="vergiDairesi" class="floating-input" />
+                <label for="vergiDairesi" class="floating-label">
+                  <i class="bi bi-building me-1"></i>Vergi Dairesi
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="floating-label-group">
+                <textarea id="adres" class="floating-textarea" rows="2"></textarea>
+                <label for="adres" class="floating-label">
+                  <i class="bi bi-geo-alt me-1"></i>Adres
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="tel" id="telefon" class="floating-input" />
+                <label for="telefon" class="floating-label">
+                  <i class="bi bi-telephone me-1"></i>Telefon
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <select id="city" class="floating-select">
+                  <option value="">Şehir seçiniz...</option>
+                </select>
+                <label for="city" class="floating-label">
+                  <i class="bi bi-geo me-1"></i>Şehir *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <select id="odemeTipi" class="floating-select">
+                  <option value="">Seçiniz...</option>
+                  <option value="Nakit">Nakit</option>
+                  <option value="Kredi Kartı">Kredi Kartı</option>
+                </select>
+                <label for="odemeTipi" class="floating-label">
+                  <i class="bi bi-credit-card me-1"></i>Ödeme Tipi
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="email" id="eposta" class="floating-input" />
+                <label for="eposta" class="floating-label">
+                  <i class="bi bi-envelope me-1"></i>E-posta
+                </label>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">İptal</button><button class="btn btn-primary" onclick="saveNewCustomer()">Kaydet</button></div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle me-2"></i>İptal
+          </button>
+          <button class="btn btn-primary" onclick="saveNewCustomer()">
+            <i class="bi bi-save me-2"></i>Kaydet
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Modal: Yeni Araç -->
   <div class="modal fade" id="newVehicleModal" tabindex="-1">
-    <div class="modal-dialog"><div class="modal-content">
-      <div class="modal-header"><h5 class="modal-title">Yeni Araç Ekle</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-      <div class="modal-body"><div class="row g-3">
-        <div class="col-md-6"><label class="form-label">Plaka *</label><input type="text" id="newVehiclePlate" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Şasi No *</label><input type="text" id="newVehicleChassis" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Motor No *</label><input type="text" id="newVehicleEngine" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Marka *</label><input type="text" id="newVehicleBrand" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Model *</label><input type="text" id="newVehicleModel" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Model Yılı *</label><input type="number" id="newVehicleYear" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Yakıt Tipi *</label><select id="newVehicleFuelType" class="form-select"><option value="">Seçiniz...</option><option>Benzin</option><option>Dizel</option><option>Elektrik</option><option>Hibrit</option></select></div>
-        <div class="col-md-6"><label class="form-label">Motor Gücü (HP) *</label><input type="number" id="newVehiclePower" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Km *</label><input type="number" id="newVehicleKm" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Diş Derinlik *</label><input type="text" id="newVehicleTireDepth" class="form-control" /></div>
-        <div class="col-md-6"><label class="form-label">Akü Durumu</label><input type="text" id="newVehicleBatteryStatus" class="form-control" /></div>
-      </div></div>
-      <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">İptal</button><button class="btn btn-primary" onclick="saveNewVehicle()">Kaydet</button></div>
-    </div></div>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content modern-card">
+        <div class="modal-header modern-card-header">
+          <h5 class="modal-title">
+            <i class="bi bi-car-front-fill me-2"></i>Yeni Araç Ekle
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body modern-card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newVehiclePlate" class="floating-input" />
+                <label for="newVehiclePlate" class="floating-label">
+                  <i class="bi bi-card-text me-1"></i>Plaka *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newVehicleChassis" class="floating-input" />
+                <label for="newVehicleChassis" class="floating-label">
+                  <i class="bi bi-diagram-3 me-1"></i>Şasi No *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newVehicleEngine" class="floating-input" />
+                <label for="newVehicleEngine" class="floating-label">
+                  <i class="bi bi-gear me-1"></i>Motor No *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newVehicleBrand" class="floating-input" />
+                <label for="newVehicleBrand" class="floating-label">
+                  <i class="bi bi-award me-1"></i>Marka *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newVehicleModel" class="floating-input" />
+                <label for="newVehicleModel" class="floating-label">
+                  <i class="bi bi-car-front me-1"></i>Model *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="number" id="newVehicleYear" class="floating-input" />
+                <label for="newVehicleYear" class="floating-label">
+                  <i class="bi bi-calendar me-1"></i>Model Yılı *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <select id="newVehicleFuelType" class="floating-select">
+                  <option value="">Seçiniz...</option>
+                  <option>Benzin</option>
+                  <option>Dizel</option>
+                  <option>Elektrik</option>
+                  <option>Hibrit</option>
+                </select>
+                <label for="newVehicleFuelType" class="floating-label">
+                  <i class="bi bi-fuel-pump me-1"></i>Yakıt Tipi *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="number" id="newVehiclePower" class="floating-input" />
+                <label for="newVehiclePower" class="floating-label">
+                  <i class="bi bi-speedometer me-1"></i>Motor Gücü (HP) *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="number" id="newVehicleKm" class="floating-input" />
+                <label for="newVehicleKm" class="floating-label">
+                  <i class="bi bi-speedometer2 me-1"></i>Km *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newVehicleTireDepth" class="floating-input" />
+                <label for="newVehicleTireDepth" class="floating-label">
+                  <i class="bi bi-circle me-1"></i>Diş Derinlik *
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="newVehicleBatteryStatus" class="floating-input" />
+                <label for="newVehicleBatteryStatus" class="floating-label">
+                  <i class="bi bi-battery-half me-1"></i>Akü Durumu
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle me-2"></i>İptal
+          </button>
+          <button class="btn btn-primary" onclick="saveNewVehicle()">
+            <i class="bi bi-save me-2"></i>Kaydet
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Modal: Müşteri Detayları (Readonly) -->
   <div class="modal fade" id="customerDetailModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Müşteri Detayları</h5>
+      <div class="modal-content modern-card">
+        <div class="modal-header modern-card-header">
+          <h5 class="modal-title">
+            <i class="bi bi-person-lines-fill me-2"></i>Müşteri Detayları
+          </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modern-card-body">
           <div class="row g-3">
-            <div class="col-md-6"><label class="form-label">Cari İsim</label><input type="text" id="viewCustomerName" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Müşteri Kodu</label><input type="text" id="viewCustomerCode" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">VKN/TC</label><input type="text" id="viewVknTc" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Vergi Dairesi</label><input type="text" id="viewVergiDairesi" class="form-control" readonly /></div>
-            <div class="col-12"><label class="form-label">Adres</label><textarea id="viewAdres" class="form-control" rows="2" readonly></textarea></div>
-            <div class="col-md-6"><label class="form-label">Telefon</label><input type="tel" id="viewTelefon" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Şehir</label><input type="text" id="viewCity" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Ödeme Tipi</label><input type="text" id="viewOdemeTipi" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">E-posta</label><input type="email" id="viewEposta" class="form-control" readonly /></div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewCustomerName" class="floating-input" readonly />
+                <label for="viewCustomerName" class="floating-label">
+                  <i class="bi bi-person me-1"></i>Cari İsim
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewCustomerCode" class="floating-input" readonly />
+                <label for="viewCustomerCode" class="floating-label">
+                  <i class="bi bi-hash me-1"></i>Müşteri Kodu
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVknTc" class="floating-input" readonly />
+                <label for="viewVknTc" class="floating-label">
+                  <i class="bi bi-card-text me-1"></i>VKN/TC
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVergiDairesi" class="floating-input" readonly />
+                <label for="viewVergiDairesi" class="floating-label">
+                  <i class="bi bi-building me-1"></i>Vergi Dairesi
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="floating-label-group">
+                <textarea id="viewAdres" class="floating-textarea" rows="2" readonly></textarea>
+                <label for="viewAdres" class="floating-label">
+                  <i class="bi bi-geo-alt me-1"></i>Adres
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="tel" id="viewTelefon" class="floating-input" readonly />
+                <label for="viewTelefon" class="floating-label">
+                  <i class="bi bi-telephone me-1"></i>Telefon
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewCity" class="floating-input" readonly />
+                <label for="viewCity" class="floating-label">
+                  <i class="bi bi-geo me-1"></i>Şehir
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewOdemeTipi" class="floating-input" readonly />
+                <label for="viewOdemeTipi" class="floating-label">
+                  <i class="bi bi-credit-card me-1"></i>Ödeme Tipi
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="email" id="viewEposta" class="floating-input" readonly />
+                <label for="viewEposta" class="floating-label">
+                  <i class="bi bi-envelope me-1"></i>E-posta
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle me-2"></i>Kapat
+          </button>
         </div>
       </div>
     </div>
@@ -973,29 +649,110 @@
 
   <!-- Modal: Araç Detayları (Readonly) -->
   <div class="modal fade" id="vehicleDetailModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Araç Detayları</h5>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content modern-card">
+        <div class="modal-header modern-card-header">
+          <h5 class="modal-title">
+            <i class="bi bi-car-front-fill me-2"></i>Araç Detayları
+          </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modern-card-body">
           <div class="row g-3">
-            <div class="col-md-6"><label class="form-label">Plaka</label><input type="text" id="viewVehiclePlate" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Şasi No</label><input type="text" id="viewVehicleChassis" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Motor No</label><input type="text" id="viewVehicleEngine" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Marka</label><input type="text" id="viewVehicleBrand" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Model</label><input type="text" id="viewVehicleModel" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Model Yılı</label><input type="number" id="viewVehicleYear" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Yakıt Tipi</label><input type="text" id="viewVehicleFuelType" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Motor Gücü (HP)</label><input type="number" id="viewVehiclePower" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Km</label><input type="number" id="viewVehicleKm" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Diş Derinlik</label><input type="text" id="viewVehicleTireDepth" class="form-control" readonly /></div>
-            <div class="col-md-6"><label class="form-label">Akü Durumu</label><input type="text" id="viewVehicleBatteryStatus" class="form-control" readonly /></div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVehiclePlate" class="floating-input" readonly />
+                <label for="viewVehiclePlate" class="floating-label">
+                  <i class="bi bi-card-text me-1"></i>Plaka
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVehicleChassis" class="floating-input" readonly />
+                <label for="viewVehicleChassis" class="floating-label">
+                  <i class="bi bi-diagram-3 me-1"></i>Şasi No
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVehicleEngine" class="floating-input" readonly />
+                <label for="viewVehicleEngine" class="floating-label">
+                  <i class="bi bi-gear me-1"></i>Motor No
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVehicleBrand" class="floating-input" readonly />
+                <label for="viewVehicleBrand" class="floating-label">
+                  <i class="bi bi-award me-1"></i>Marka
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVehicleModel" class="floating-input" readonly />
+                <label for="viewVehicleModel" class="floating-label">
+                  <i class="bi bi-car-front me-1"></i>Model
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="number" id="viewVehicleYear" class="floating-input" readonly />
+                <label for="viewVehicleYear" class="floating-label">
+                  <i class="bi bi-calendar me-1"></i>Model Yılı
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVehicleFuelType" class="floating-input" readonly />
+                <label for="viewVehicleFuelType" class="floating-label">
+                  <i class="bi bi-fuel-pump me-1"></i>Yakıt Tipi
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="number" id="viewVehiclePower" class="floating-input" readonly />
+                <label for="viewVehiclePower" class="floating-label">
+                  <i class="bi bi-speedometer me-1"></i>Motor Gücü (HP)
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="number" id="viewVehicleKm" class="floating-input" readonly />
+                <label for="viewVehicleKm" class="floating-label">
+                  <i class="bi bi-speedometer2 me-1"></i>Km
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVehicleTireDepth" class="floating-input" readonly />
+                <label for="viewVehicleTireDepth" class="floating-label">
+                  <i class="bi bi-circle me-1"></i>Diş Derinlik
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="floating-label-group">
+                <input type="text" id="viewVehicleBatteryStatus" class="floating-input" readonly />
+                <label for="viewVehicleBatteryStatus" class="floating-label">
+                  <i class="bi bi-battery-half me-1"></i>Akü Durumu
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle me-2"></i>Kapat
+          </button>
         </div>
       </div>
     </div>
@@ -1010,62 +767,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
 
-  <script>
-    // PDF Export fonksiyonu
-    function exportToPDF() {
-      // Dropdown'ları kapat
-      document.getElementById('customerDropdown').style.display = 'none';
-      document.getElementById('vehicleDropdown').style.display = 'none';
-      document.getElementById('productDropdown').style.display = 'none';
-      
-      // Summary alanını kesinlikle göster
-      const summarySection = document.getElementById('summarySection');
-      if (summarySection) {
-        summarySection.style.display = 'block';
-        summarySection.style.visibility = 'visible';
-        summarySection.style.opacity = '1';
-        console.log('Summary alanı PDF için hazırlandı');
-      }
-      
-      // Yazdırma dialog'unu aç
-      window.print();
-    }
-    
-    // Print öncesi/sonrası event'lar
-    window.addEventListener('beforeprint', function() {
-      console.log('Sipariş formu yazdırılıyor...');
-      
-      // Sayfa başlığını geçici olarak temizle
-      document.title = '';
-      
-      // Dropdown'ları kesin kapat
-      const dropdowns = ['customerDropdown', 'vehicleDropdown', 'productDropdown'];
-      dropdowns.forEach(id => {
-        const dropdown = document.getElementById(id);
-        if (dropdown) {
-          dropdown.style.display = 'none';
-          dropdown.style.visibility = 'hidden';
-        }
-      });
-      
-      // Summary alanını print sırasında kesinlikle göster
-      const summarySection = document.getElementById('summarySection');
-      if (summarySection) {
-        summarySection.style.display = 'block !important';
-        summarySection.style.visibility = 'visible !important';
-        summarySection.style.opacity = '1 !important';
-        console.log('Summary alanı print sırasında görünür yapıldı');
-      }
-    });
-    
-    window.addEventListener('afterprint', function() {
-      console.log('Sipariş formu yazdırma tamamlandı.');
-      // Sayfa başlığını geri yükle
-      document.title = 'Klas Perakende Satış';
-    });
-  </script>
+  <!-- Custom JavaScript Files -->
+  <script src="assets/js/print.js"></script>
 
   <!-- Uygulama Modülleri -->
-  <script type="module" src="main.js" defer></script>
+  <script type="module" src="app.js" defer></script>
 </body>
 </html>

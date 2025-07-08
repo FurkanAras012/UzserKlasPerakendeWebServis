@@ -1,7 +1,7 @@
-import { getQueryParam } from './helpers.js';
+import { getQueryParam } from '../services/helpers.js';
 import { showError, showSuccess } from './ui.js';
-import { saveLine, deleteLine } from './api.js';
-import { API_CONFIG } from './config.js';
+import { saveLine, deleteLine } from '../services/api.js';
+import { API_CONFIG } from '../config.js';
 
 // Global değişkenler
 export let kalemListesi = [];
@@ -73,8 +73,9 @@ export async function addProduct() {
   const currency = 0; // Sabit TRY
 
   // Validasyon
-  if (!code || !name) return showError('Lütfen geçerli bir ürün seçin!');
-  if (qty <= 0 || price <= 0) return showError('Miktar ve fiyat 0\'dan büyük olmalı!');
+  if (!code || code.trim() === '') return showError("Ürün kodu zorunludur!");
+  if (!qty || isNaN(qty) || qty <= 0) return showError("Miktar zorunludur ve 0'dan büyük olmalıdır!");
+  if (!price || isNaN(price) || price <= 0) return showError("Fiyat zorunludur ve 0'dan büyük olmalıdır!");
   
   // MasterId kontrolü
   if (!masterId || masterId === 0) {
@@ -126,6 +127,9 @@ export function populateProductTable() {
   const table = document.getElementById('productTable');
   const tbody = table.querySelector('tbody');
   tbody.innerHTML = '';
+
+  // Global products verilerini kullan
+  const products = window.productsData || [];
 
   kalemListesi.forEach((kalem, index) => {
     const tr = document.createElement('tr');
@@ -277,8 +281,14 @@ export function resetProductForm() {
 }
 
 // Satırları yükle ve tabloyu güncelle
-export async function fetchSiparisTra(products) {
+export async function fetchSiparisTra(productsParam = null) {
   try {
+    // Global products verilerini kullan, parametre varsa onu kullan
+    const products = productsParam || window.productsData || [];
+    
+    console.log('fetchSiparisTra - products from:', productsParam ? 'parameter' : 'global window');
+    console.log('fetchSiparisTra - products count:', products.length);
+    
     // masterId kullan, flowId değil
     if (!masterId || masterId === 0) {
       console.log("masterId mevcut değil, kalemler yüklenemiyor:", masterId);
@@ -300,6 +310,7 @@ export async function fetchSiparisTra(products) {
 
     kalemListesi = result.data.map(item => {
       console.log('Processing item:', item);
+      console.log('Available products for matching:', products.slice(0, 3)); // İlk 3 ürünü göster
       
       // Önce basit matching'i dene
       let prod = products.find(p => p.stockCode === item.stockCode);
