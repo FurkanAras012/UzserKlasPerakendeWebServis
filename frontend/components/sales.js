@@ -219,7 +219,7 @@ export function populateFormWithSalesData(data, customers, tigerUsers = []) {
   });
   
   document.getElementById('siparisTarihi').value = orderDate;
-  document.getElementById('headerTarih').value = orderDate;
+ // document.getElementById('headerTarih').value = orderDate;
   document.getElementById('teslimTarihi').value = deliveryDate;
   
   // Flatpickr instance'larını güncelle - birden fazla yöntem dene

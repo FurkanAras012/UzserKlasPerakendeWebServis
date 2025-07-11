@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sipariş Raporu</title>
+  <link rel="stylesheet" href="../assets/css/modern-theme.css">
+  <link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body>
+  <header class="modern-theme">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <div class="modern-title">Sipariş Raporu</div>
+    </div>
+  </header>
+  <main class="container-fluid mt-4">
+    <div class="card">
+      <div class="card-header">Geçmiş Siparişler</div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="ordersGrid">
+            <thead>
+              <tr id="ordersGridHeader">
+                <!-- Kolonlar dinamik olarak eklenecek -->
+              </tr>
+            </thead>
+            <tbody id="ordersGridBody">
+              <!-- Siparişler dinamik olarak eklenecek -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../pages/orders-report.js"></script>
+</body>
+</html>

@@ -50,7 +50,7 @@
   </div>
 
   <!-- Üst Bilgi -->
-  <header class="modern-card shadow-sm py-3 mb-4">
+  <header class="modern-card shadow-sm py-3">
     <div class="container-fluid d-flex flex-wrap align-items-center justify-content-between px-4">
       <div class="d-flex align-items-center">
         <!-- Logo dosyaları henüz assets/img klasörüne taşınmamış -->
@@ -69,10 +69,7 @@
             <input type="text" id="orderCodeHeader" class="floating-input" placeholder="NRP202500001" readonly />
             <label for="orderCodeHeader" class="floating-label">Sipariş No</label>
           </div>
-          <div class="floating-label-group mb-2 header-date-field screen-only">
-            <input type="text" id="headerTarih" class="floating-input" readonly />
-            <label for="headerTarih" class="floating-label">Tarih</label>
-          </div>
+         
           <div class="floating-label-group screen-only">
             <input type="text" id="plasiyerInput" class="floating-input" placeholder="Plasiyer giriniz" readonly />
             <label for="plasiyerInput" class="floating-label">Plasiyer</label>
@@ -83,7 +80,7 @@
   </header>
 
   <!-- Gövde -->
-  <main class="container-fluid my-5 px-4">
+  <main class="container-fluid  px-4">
     <!-- Sipariş Üst Bilgisi -->
     <div class="modern-card shadow-sm mb-4">
       <div class="modern-card-header d-flex justify-content-between align-items-center">
@@ -772,5 +769,23 @@
 
   <!-- Uygulama Modülleri -->
   <script type="module" src="app.js" defer></script>
+  <script>
+    // Eğer readonly parametresi varsa tüm input/select/textarea'ları devre dışı bırak
+    function setReadonlyIfNeeded() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('readonly') === '1') {
+        document.querySelectorAll('input, select, textarea, button:not(.btn-close)').forEach(el => {
+          if (el.type === 'button' || el.type === 'submit' || el.classList.contains('btn-close')) return;
+          el.setAttribute('readonly', 'readonly');
+          el.setAttribute('disabled', 'disabled');
+        });
+        // Tüm ekleme/silme butonlarını da gizle
+        document.querySelectorAll('.btn, .floating-btn, .add-btn, .delete-btn, .edit-btn').forEach(el => {
+          if (!el.classList.contains('btn-close')) el.style.display = 'none';
+        });
+      }
+    }
+    document.addEventListener('DOMContentLoaded', setReadonlyIfNeeded);
+  </script>
 </body>
 </html>

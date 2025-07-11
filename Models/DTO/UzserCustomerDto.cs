@@ -25,6 +25,6 @@ namespace Uzser.CoreServices.Models.Entities
         public string? Email { get; set; } = string.Empty;
         public int? FlowId { get; set; } = 0;
         public int Status { get; set; } = 0;
-        public int? CityId { get; set; } = 0;
+        public string? CityId { get; set; } = "";
     }
 }

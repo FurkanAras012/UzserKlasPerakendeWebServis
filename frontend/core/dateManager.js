@@ -13,7 +13,7 @@ export class DateManager {
     });
     
     // Header tarih alanını doldur
-    document.getElementById('headerTarih').value = formattedDate;
+    //document.getElementById('headerTarih').value = formattedDate;
     
     this.siparisTarihiPicker = flatpickr('#siparisTarihi', {
       enableTime: true,

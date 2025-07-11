@@ -331,7 +331,7 @@
 .modern-card {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border: none;
   overflow: hidden;
   transition: var(--floating-transition);
@@ -345,7 +345,6 @@
 .modern-card-header {
   background: linear-gradient(135deg, var(--gray-600) 0%, var(--gray-700) 100%);
   color: white;
-  padding: 1.0rem 1.0rem;
   border-bottom: none;
   font-weight: 600;
 }
@@ -373,7 +372,7 @@
   padding: 1rem;
   font-weight: 600;
   font-size: 0.875rem;
-  color: #374151;
+  color: #000000;
   text-transform: uppercase;
   letter-spacing: 0.025em;
   border-bottom: 2px solid #e5e7eb;

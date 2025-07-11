@@ -140,8 +140,8 @@ export function populateProductTable() {
       <td>${kalem.stockname}</td>
       <td>${parseFloat(kalem.price).toFixed(2)}</td>
       <td>${kalem.currency}</td>
-      <td class="text-center">${kalem.quantity}</td>
-      <td class="text-center">${kalem.discount}</td>
+      <td class="text-center">${parseFloat(kalem.quantity).toFixed(2)}</td>
+      <td class="text-center">${parseFloat(kalem.discount).toFixed(2)}</td>
       
       <td class="text-center">
         <button class="btn btn-danger btn-sm" onclick="removeProductHandler(${kalem.id}, ${index})">

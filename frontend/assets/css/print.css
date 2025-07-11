@@ -4,32 +4,37 @@
     #orderInfoBody select.floating-select,
     #orderInfoBody .form-control,
     #orderInfoBody .form-select {
-      font-size: 11px !important;
-      padding: 0.12rem 0.35rem !important;
-      height: 1.35rem !important;
-      min-height: 1.35rem !important;
+      font-size: 10px !important;
+      padding: 0.06rem 0.18rem !important;
+      height: 1.05rem !important;
+      min-height: 1.05rem !important;
       border-width: 1px !important;
-      border-radius: 2px !important;
+      border-radius: 0 !important;
       box-shadow: none !important;
-      line-height: 1.1 !important;
+      line-height: 1 !important;
       margin-bottom: 0 !important;
-      background: white !important;
+      background: #fff !important;
+      color: #111 !important;
+      font-family: 'Times New Roman', Times, serif !important;
     }
     #orderInfoBody label.floating-label {
       position: static !important;
       display: block !important;
-      font-size: 9.5px !important;
-      margin-bottom: 0.02rem !important;
-      margin-top: 0.04rem !important;
-      padding: 0 0 0.5px 2px !important;
+      font-size: 9px !important;
+      margin-bottom: 0.01rem !important;
+      margin-top: 0.01rem !important;
+      padding: 0 0 0.5px 1px !important;
       background: none !important;
-      color: #444 !important;
-      line-height: 1.1 !important;
+      color: #111 !important;
+      line-height: 1 !important;
       top: unset !important;
       left: unset !important;
       transform: none !important;
       pointer-events: auto !important;
       z-index: auto !important;
+      font-family: 'Times New Roman', Times, serif !important;
+      font-weight: bold !important;
+      letter-spacing: 0 !important;
     }
     /* Print'te label'ı inputun üstüne al */
     #orderInfoBody .floating-label-group {
@@ -37,12 +42,12 @@
       flex-direction: column-reverse !important;
       align-items: stretch !important;
       gap: 0 !important;
-      margin-bottom: 0.12rem !important;
+      margin-bottom: 0.08rem !important;
     }
     /* Inputlar arası mesafeyi azalt */
     #orderInfoBody .row > [class^="col-"],
     #orderInfoBody .row > [class*=" col-"] {
-      margin-bottom: 0.1rem !important;
+      margin-bottom: 0.06rem !important;
     }
   }
   /* Ürün bilgileri ve özetini birlikte tutma zorunluluğu kaldırıldı */
@@ -134,28 +139,31 @@
   }
 
   #summarySection .card {
-    border: 1px solid #dee2e6 !important;
-    border-radius: 5px !important;
+    border: 1px solid #222 !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
-    background: white !important;
+    background: #fff !important;
     max-width: 250px !important;
   }
 
   #summarySection .card-header {
-    background: #f8f9fa !important;
-    color: black !important;
-    border-bottom: 1px solid #dee2e6 !important;
-    padding: 0.3rem !important;
+    background: #fff !important;
+    color: #111 !important;
+    border-bottom: 1px solid #222 !important;
+    padding: 0.18rem !important;
     font-weight: bold !important;
     font-size: 10px !important;
     text-align: center !important;
     print-color-adjust: exact !important;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    letter-spacing: 0.01em !important;
   }
 
   #summarySection .card-body {
-    padding: 0.5rem !important;
+    padding: 0.3rem !important;
     font-size: 9px !important;
-    line-height: 1.3 !important;
+    line-height: 1.15 !important;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
   }
 
   #summarySection .d-flex { margin-bottom: 0.2rem !important; }
@@ -167,19 +175,20 @@
   #summarySection span {
     font-weight: normal !important;
     font-size: 9px !important;
-    color: black !important;
+    color: #111 !important;
     print-color-adjust: exact !important;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
   }
 
   #summarySection .d-flex span:first-child { font-weight: bold !important; }
   #summarySection .border-top {
-    border-top: 1px solid #dee2e6 !important;
-    padding-top: 0.2rem !important;
+    border-top: 1px solid #222 !important;
+    padding-top: 0.15rem !important;
   }
 
   #summarySection hr {
-    margin: 0.3rem 0 !important;
-    border-top: 1px solid #dee2e6 !important;
+    margin: 0.18rem 0 !important;
+    border-top: 1px solid #222 !important;
   }
 
   /* Ürün form alanlarını gizle */
@@ -261,25 +270,29 @@
 
   .card {
     box-shadow: none !important;
-    border: 1px solid #dee2e6 !important;
+    border: 1px solid #111 !important;
+    border-radius: 0 !important;
     page-break-inside: avoid !important;
-    margin-bottom: 1rem !important;
+    margin-bottom: 0.5rem !important;
+    background: #fff !important;
   }
 
   /* Sadece çıktıdaki kart başlıklarını (Sipariş Bilgisi, Ürün Bilgileri) küçült ve arka planı kaldır */
   .card-header,
   .modern-card-header {
-    background: transparent !important;
-    color: black !important;
-    border-bottom: 1px solid #dee2e6 !important;
+    background: #fff !important;
+    color: #111 !important;
+    border-bottom: 1px solid #111 !important;
     print-color-adjust: exact !important;
     padding: 0.05rem 0.5rem 0.12rem 0.5rem !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
     font-weight: bold !important;
     min-height: unset !important;
-    line-height: 1.1 !important;
+    line-height: 1 !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    letter-spacing: 0 !important;
   }
 
   /* Sipariş üst bilgileri */
@@ -302,23 +315,38 @@
 
   /* Tablo */
   .table {
-    font-size: 11px !important;
+    font-size: 10px !important;
     border-collapse: collapse !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    color: #111 !important;
+    background: #fff !important;
   }
 
   .table thead th {
-    background: #e9ecef !important;
-    border: 1px solid #dee2e6 !important;
-    padding: 0.5rem !important;
+    background: #fff !important;
+    border: 1px solid #111 !important;
+    padding: 0.22rem !important;
     print-color-adjust: exact !important;
+    color: #111 !important;
+    font-weight: bold !important;
+    font-size: 10px !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    letter-spacing: 0 !important;
+    background-color: #fff !important;
+    box-shadow: none !important;
   }
 
   .table tbody td {
-    border: 1px solid #dee2e6 !important;
-    padding: 0.4rem !important;
+    border: 1px solid #111 !important;
+    padding: 0.18rem !important;
+    color: #111 !important;
+    font-size: 10px !important;
+    font-family: 'Times New Roman', Times, serif !important;
   }
 
   /* İmza kutuları */
+
+
 .signature-boxes {
     position: static !important;
     margin-top: 1.2cm !important;
@@ -326,33 +354,40 @@
     justify-content: space-between !important;
     page-break-before: auto !important;
     break-before: auto !important;
+    font-family: 'Times New Roman', Times, serif !important;
 }
 
   .signature-box {
     width: 45% !important;
-    border: 1px solid #dee2e6 !important;
-    padding: 1rem !important;
+    border: 1px solid #111 !important;
+    border-radius: 0 !important;
+    padding: 0.5rem !important;
     text-align: center !important;
-    background: white !important;
-    min-height: 80px !important;
+    background: #fff !important;
+    min-height: 60px !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 10px !important;
+    color: #111 !important;
   }
 
   .signature-title {
     font-weight: bold !important;
-    font-size: 11px !important;
-    color: black !important;
+    font-size: 10px !important;
+    color: #111 !important;
+    font-family: 'Times New Roman', Times, serif !important;
   }
 
   .signature-line {
-    border-top: 1px solid black !important;
-    margin-top: 2rem !important;
+    border-top: 1px solid #111 !important;
+    margin-top: 1rem !important;
     font-size: 9px !important;
-    color: black !important;
+    color: #111 !important;
+    font-family: 'Times New Roman', Times, serif !important;
   }
 
   /* @page ayarları */
   @page {
-    margin: 1cm;
+    margin: 1.5cm 1.2cm 1.2cm 1.2cm;
     size: A4;
     @top-left { content: ""; }
     @top-center { content: ""; }
